@@ -1,6 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CS61B--Day02</title>
+    <url>/2025/11/02/CS61B-Day02/</url>
+    <content><![CDATA[<h1 id="Testing-测试-："><a href="#Testing-测试-：" class="headerlink" title="Testing(测试)："></a>Testing(测试)：</h1><ul>
+<li><p>不要依赖自动评分工具，不要自动评分驱动开发</p>
+</li>
+<li><p>测试还帮助你对你程序的基本部分建立信心，以便如果出现问题时，你能更好地知道从哪里开始查找</p>
+<p>贴一下josh的示例代码,将来回顾用，<del>我想不到啥好写的</del>,感觉还是得多用。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Sort</span> {</span><br><span class="line">    <span class="comment">/** Sorts strings destructively. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(String[] x)</span> {</span><br><span class="line">        sort(x, <span class="number">0</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Sorts x starting at position start. */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(String[] x, <span class="type">int</span> start)</span> {</span><br><span class="line">        <span class="keyword">if</span> (start == x.length) {</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="type">int</span> <span class="variable">smallestIndex</span> <span class="operator">=</span> findSmallest(x, start);</span><br><span class="line">        swap(x, start, smallestIndex);</span><br><span class="line">        sort(x, start + <span class="number">1</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Swap item a with b. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(String[] x, <span class="type">int</span> a, <span class="type">int</span> b)</span> {</span><br><span class="line">        <span class="type">String</span> <span class="variable">temp</span> <span class="operator">=</span> x[a];</span><br><span class="line">        x[a] = x[b];</span><br><span class="line">        x[b] = temp;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Return the index of the smallest String in x, starting at start. */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">findSmallest</span><span class="params">(String[] x, <span class="type">int</span> start)</span> {</span><br><span class="line">        <span class="type">int</span> <span class="variable">smallestIndex</span> <span class="operator">=</span> start;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> start; i &lt; x.length; i += <span class="number">1</span>) {</span><br><span class="line">            <span class="type">int</span> <span class="variable">cmp</span> <span class="operator">=</span> x[i].compareTo(x[smallestIndex]);</span><br><span class="line">            <span class="comment">// from the internet, if x[i] &lt; x[smallestIndex], cmp will be -1.</span></span><br><span class="line">            <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>) {</span><br><span class="line">                smallestIndex = i;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">return</span> smallestIndex;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Tests the the Sort class. */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestSort</span> {</span><br><span class="line">    <span class="comment">/** Test the Sort.sort method. */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSort</span><span class="params">()</span> {</span><br><span class="line">        String[] input = {<span class="string">"i"</span>, <span class="string">"have"</span>, <span class="string">"an"</span>, <span class="string">"egg"</span>};</span><br><span class="line">        String[] expected = {<span class="string">"an"</span>, <span class="string">"egg"</span>, <span class="string">"have"</span>, <span class="string">"i"</span>};</span><br><span class="line"></span><br><span class="line">        Sort.sort(input);</span><br><span class="line"></span><br><span class="line">        assertArrayEquals(expected, input);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Test the Sort.findSmallest method. */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testFindSmallest</span><span class="params">()</span> {</span><br><span class="line">        String[] input = {<span class="string">"i"</span>, <span class="string">"have"</span>, <span class="string">"an"</span>, <span class="string">"egg"</span>};</span><br><span class="line">        <span class="type">int</span> <span class="variable">expected</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">actual</span> <span class="operator">=</span> Sort.findSmallest(input, <span class="number">0</span>);</span><br><span class="line">        assertEquals(expected, actual);</span><br><span class="line"></span><br><span class="line">        String[] input2 = {<span class="string">"there"</span>, <span class="string">"are"</span>, <span class="string">"many"</span>, <span class="string">"pigs"</span>};</span><br><span class="line">        <span class="type">int</span> <span class="variable">expected2</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">actual2</span> <span class="operator">=</span> Sort.findSmallest(input2, <span class="number">2</span>);</span><br><span class="line">        assertEquals(expected2, actual2);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Test the Sort.swap method. */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testSwap</span><span class="params">()</span> {</span><br><span class="line">        String[] input = {<span class="string">"i"</span>, <span class="string">"have"</span>, <span class="string">"an"</span>, <span class="string">"egg"</span>};</span><br><span class="line">        <span class="type">int</span> <span class="variable">a</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">b</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line">        String[] expected = {<span class="string">"an"</span>, <span class="string">"have"</span>, <span class="string">"i"</span>, <span class="string">"egg"</span>};</span><br><span class="line"></span><br><span class="line">        Sort.swap(input, a, b);</span><br><span class="line">        assertArrayEquals(expected, input);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h1 id="References-Recursion-and-Lists："><a href="#References-Recursion-and-Lists：" class="headerlink" title="References, Recursion, and Lists："></a>References, Recursion, and Lists：</h1><h3 id="References-引用-与-“盒子与指针”-模型"><a href="#References-引用-与-“盒子与指针”-模型" class="headerlink" title="References (引用) 与 “盒子与指针” 模型"></a>References (引用) 与 “盒子与指针” 模型</h3><ul>
+<li><p><strong>Java 变量的两种类型：</strong></p>
+<ol>
+<li><p><strong>基本类型 (Primitives):</strong> <code>int</code>, <code>double</code>, <code>boolean</code> 等。变量盒子<strong>直接存储值</strong>。</p>
+<ul>
+<li><code>int x = 5;</code> (盒子 <code>x</code> 里装着 <code>5</code>)</li>
+</ul>
+</li>
+<li><p><strong>引用类型 (References):</strong> 数组 (Arrays) 和对象 (Objects)。变量盒子<strong>存储的是地址（指针）</strong>，指向内存中实际的对象。</p>
+<ul>
+<li><code>IntList L = new IntList(5, null);</code> (盒子 <code>L</code> 里装着一个<strong>箭头</strong>，指向新创建的 <code>IntList</code> 对象)</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>赋值 (<code>=</code>) 的含义：</strong></p>
+<ul>
+<li><p>对基本类型：<strong>复制值</strong>。</p>
+</li>
+<li><p>对引用类型：<strong>复制地址（箭头）</strong>。两个变量将指向<strong>同一个</strong>对象。</p>
+<ul>
+<li><code>IntList L2 = L;</code> (现在 <code>L2</code> 也指向了 <code>L</code> 所指向的那个对象)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>参数传递 (Parameter Passing)：</strong></p>
+<ul>
+<li><p>Java <strong>永远是 “按值传递” (Pass-by-value)</strong>。</p>
+</li>
+<li><p>传基本类型：复制值，方法内修改<strong>不影响</strong>外部。</p>
+</li>
+<li><p>传引用类型：复制地址，方法内可以通过该地址<strong>修改所指向的对象</strong>，但无法修改外部变量的指向。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Recursion-递归"><a href="#Recursion-递归" class="headerlink" title="Recursion (递归)"></a>Recursion (递归)</h3><ul>
+<li><p><strong>递归三要素：</strong></p>
+<ol>
+<li><p><strong>Base Case (基本情况):</strong> 最小的、可以直接求解的问题（例如 <code>null</code> 链表或 <code>size == 0</code>）。这是递归的<strong>停止条件</strong>。</p>
+</li>
+<li><p><strong>Recursive Step (递归步骤):</strong> 如何将当前问题分解为<strong>更小</strong>的、同类子问题。</p>
+</li>
+<li><p><strong>Leap of Faith (信任的飞跃):</strong> <strong>假设</strong>递归调用 <code>recursiveCall(smallerProblem)</code> 能够正确解决那个更小的问题，然后利用它的结果来解决当前问题。</p>
+</li>
+</ol>
+</li>
+<li><p><strong>递归 vs. 迭代 (Iteration)：</strong></p>
+<ul>
+<li><p>几乎所有递归都能转为迭代，反之亦然。</p>
+</li>
+<li><p>递归代码通常更简洁，(<del>也更难</del>)。</p>
+</li>
+<li><p>迭代通常效率更高（节省函数调用栈的空间）。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Lists-链表"><a href="#Lists-链表" class="headerlink" title="Lists (链表)"></a>Lists (链表)</h3><ul>
+<li><p><strong><code>IntList</code> (本章核心数据结构):</strong></p>
+<ul>
+<li><p>一个典型的<strong>递归定义</strong>的数据结构。</p>
+</li>
+<li><p>一个 <code>IntList</code> 对象包含两部分：</p>
+<ol>
+<li><p><code>int first;</code> (当前节点的值)</p>
+</li>
+<li><p><code>IntList rest;</code> (指向<strong>列表其余部分</strong>的引用，它本身也是一个 <code>IntList</code>)</p>
+</li>
+</ol>
+</li>
+<li><p>最后一个节点的 <code>rest</code> 为 <code>null</code>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>两种处理 <code>IntList</code> 的方法：</strong></p>
+<ol>
+<li><p><strong>迭代 (Iterative):</strong> 使用 <code>while</code> 循环和临时指针（如 <code>p</code>）遍历链表。</p>
+<ul>
+<li><code>IntList p = L; while (p != null) { ...; p = p.rest; }</code></li>
+</ul>
+</li>
+<li><p><strong>递归 (Recursive):</strong> 完美契合 <code>IntList</code> 的定义。</p>
+<ul>
+<li><p><code>size(L)</code> 的定义：</p>
+<ul>
+<li><p>Base Case: <code>if (L == null) return 0;</code></p>
+</li>
+<li><p>Recursive Step: <code>return 1 + size(L.rest);</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>破坏性 (Destructive) vs. 非破坏性 (Non-Destructive) 操作：</strong></p>
+<ul>
+<li><p><strong>非破坏性：</strong> 创建<strong>新的</strong>节点/链表来返回结果，<strong>不修改</strong>原始链表。（例如 <code>dincrList</code>）</p>
+</li>
+<li><p><strong>破坏性：</strong> <strong>直接修改</strong>原始链表的 <code>first</code> 或 <code>rest</code> 字段。（例如 <code>incrList</code>）</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+]]></content>
+      <tags>
+        <tag>CS61B</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CS61B--Day01</title>
     <url>/2025/11/01/CS61B-Day01/</url>
     <content><![CDATA[<p>java是一个静态类型的语言，不具备有损的隐式转换的功能，定义为int类型时无法赋予5.3这样的值（c语言中则是可以赋值但是会导致精度丢失，也就是“隐式转换”）</p>
