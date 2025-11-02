@@ -112,14 +112,7 @@
 </li>
 </ol>
 </li>
-<li><p><strong>破坏性 (Destructive) vs. 非破坏性 (Non-Destructive) 操作：</strong></p>
-<ul>
-<li><p><strong>非破坏性：</strong> 创建<strong>新的</strong>节点/链表来返回结果，<strong>不修改</strong>原始链表。（例如 <code>dincrList</code>）</p>
-</li>
-<li><p><strong>破坏性：</strong> <strong>直接修改</strong>原始链表的 <code>first</code> 或 <code>rest</code> 字段。（例如 <code>incrList</code>）</p>
-</li>
-</ul>
-</li>
+<li></li>
 </ul>
 <hr>
 ]]></content>
