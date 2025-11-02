@@ -129,7 +129,7 @@
 </li>
 <li><p><strong>Recursive Step (递归步骤):</strong> 如何将当前问题分解为<strong>更小</strong>的、同类子问题。</p>
 </li>
-<li><p><strong>Leap of Faith (信任的飞跃):</strong> <strong>假设</strong>递归调用 <code>recursiveCall(smallerProblem)</code> 能够正确解决那个更小的问题，然后利用它的结果来解决当前问题。</p>
+<li><p><strong>Leap of Faith (信仰之跃):</strong> <strong>假设</strong>递归调用 <code>recursiveCall(smallerProblem)</code> 能够正确解决那个更小的问题，然后利用它的结果来解决当前问题。</p>
 </li>
 </ol>
 </li>
