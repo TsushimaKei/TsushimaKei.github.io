@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tsushimakei.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="1234@Testpublic void testMethod() {    assertEquals(&lt;expected&gt;, &lt;actual&gt;);}   assertEquals&nbsp;是 JUnit 测试中常用的一个方法。它用于测试变量的实际值是否与其预期值相等。 当你创建 JUnit 测试文件时，你应该在每个测试方法前面都加上一个 @Test 注解，并且（在方法内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS61B--Day03">
+<meta property="og:url" content="https://tsushimakei.github.io/2025/11/03/CS61B-Day03/index.html">
+<meta property="og:site_name" content="对马馨的Blog">
+<meta property="og:description" content="1234@Testpublic void testMethod() {    assertEquals(&lt;expected&gt;, &lt;actual&gt;);}   assertEquals&nbsp;是 JUnit 测试中常用的一个方法。它用于测试变量的实际值是否与其预期值相等。 当你创建 JUnit 测试文件时，你应该在每个测试方法前面都加上一个 @Test 注解，并且（在方法内">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-03T11:52:22.000Z">
+<meta property="article:modified_time" content="2025-11-03T11:52:53.525Z">
+<meta property="article:author" content="TsushimaKei">
+<meta property="article:tag" content="CS61B">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://tsushimakei.github.io/2025/11/03/CS61B-Day03/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tsushimakei.github.io/2025/11/03/CS61B-Day03/","path":"2025/11/03/CS61B-Day03/","title":"CS61B--Day03"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CS61B--Day03 | 对马馨的Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">对马馨的Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-folder-open fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SLList"><span class="nav-number">1.</span> <span class="nav-text">SLList</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%93%A8%E5%85%B5%E8%8A%82%E7%82%B9%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">哨兵节点：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">TsushimaKei</p>
+  <div class="site-description" itemprop="description">不要比较</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tsushimakei.github.io/2025/11/03/CS61B-Day03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="TsushimaKei">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="对马馨的Blog">
+      <meta itemprop="description" content="不要比较">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CS61B--Day03 | 对马馨的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CS61B--Day03
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-11-03 19:52:22 / 修改时间：19:52:53" itemprop="dateCreated datePublished" datetime="2025-11-03T19:52:22+08:00">2025-11-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testMethod</span><span class="params">()</span> {</span><br><span class="line">    assertEquals(&lt;expected&gt;, &lt;actual&gt;);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p><code>assertEquals</code>&nbsp;是 JUnit 测试中常用的一个方法。它用于测试变量的实际值是否与其预期值相等。</p>
+<p>当你创建 JUnit 测试文件时，你应该在每个测试方法前面都加上一个 <code>@Test</code> 注解，并且（在方法内部）可以有一个或多个 <code>assertEquals</code> 或 <code>assertTrue</code> 方法（这些方法由 JUnit 库提供）。</p>
+<p><strong>所有的测试（方法）都必须是非静态的 (non-static)</strong>。</p>
+<p>这可能看起来有点奇怪，因为你的测试（方法）并不使用实例变量，而且你很可能也不会去实例化这个（测试）类。然而，JUnit 的设计者就是这样决定测试应该如何编写的，所以我们就照做好了。</p>
+</blockquote>
+<h1 id="SLList"><a href="#SLList" class="headerlink" title="SLList"></a>SLList</h1><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> calss IntList{</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> first;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> rest;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Intlist</span><span class="params">(<span class="type">int</span> f, <span class="type">int</span> r)</span>{</span><br><span class="line">        first = f;</span><br><span class="line">        rest = r;</span><br><span class="line">    }</span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>像<code>IntList</code>这样的递归数据结构是裸露的，在java中这是不太合适的</p>
+</blockquote>
+<p>public calss IntNode{<br> public int item;<br> public int next;<br> public IntNode(int i, int n){<br> item = i;<br> next = n;<br> }<br>}</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SLlist</span>{</span><br><span class="line">    <span class="keyword">private</span> IntNode first;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLlist</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        first = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 在列表前添加元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFirst</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">        first = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, first);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 查找第一个元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getFirst</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        <span class="keyword">return</span> first.item;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 在链表最后添加元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        <span class="type">IntNode</span> <span class="variable">p</span> <span class="operator">=</span> first;</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (p.next != <span class="literal">null</span>){</span><br><span class="line">            p = p.next;</span><br><span class="line">        }</span><br><span class="line">        p.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x,<span class="literal">null</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>像<code>SLList</code>这样被封装后的数据结构更易于使用</p>
+<p><code>private</code>关键字与<code>public</code>不同，他的可以避免被除了<code>SLLits</code>类以外的类使用</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;也就是对类的用户隐藏实现细节</p>
+</blockquote>
+<ul>
+<li><p>如果你在java中公开了一些东西，一般来说你应该永远不要删除他</p>
+</li>
+<li><p>私有的东西你可以更改，用户永远不需要知道，但公共的东西应该永远有效</p>
+<h1 id="哨兵节点："><a href="#哨兵节点：" class="headerlink" title="哨兵节点："></a>哨兵节点：</h1><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SLlist</span>{</span><br><span class="line">    <span class="keyword">private</span> IntNode sentinel;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLList</span> <span class="params">()</span>{</span><br><span class="line">        sentinel = <span class="keyword">new</span> <span class="title class_">IntNode</span>(<span class="number">63</span>, <span class="literal">null</span>); <span class="comment">// 这里的63可以是任何数，也可以是-5或72，这无所谓</span></span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLlist</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        sentinel = <span class="keyword">new</span> <span class="title class_">IntNode</span>(<span class="number">63</span>, <span class="literal">null</span>);</span><br><span class="line">        sentinel.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<hr>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CS61B/" rel="tag"># CS61B</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/11/02/CS61B-Day02/" rel="prev" title="CS61B--Day02">
+                  <i class="fa fa-angle-left"></i> CS61B--Day02
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">TsushimaKei</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

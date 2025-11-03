@@ -139,7 +139,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,6 +161,103 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tsushimakei.github.io/2025/11/03/CS61B-Day03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="TsushimaKei">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="对马馨的Blog">
+      <meta itemprop="description" content="不要比较">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 对马馨的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/11/03/CS61B-Day03/" class="post-title-link" itemprop="url">CS61B--Day03</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-11-03 19:52:22 / 修改时间：19:52:53" itemprop="dateCreated datePublished" datetime="2025-11-03T19:52:22+08:00">2025-11-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testMethod</span><span class="params">()</span> {</span><br><span class="line">    assertEquals(&lt;expected&gt;, &lt;actual&gt;);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p><code>assertEquals</code>&nbsp;是 JUnit 测试中常用的一个方法。它用于测试变量的实际值是否与其预期值相等。</p>
+<p>当你创建 JUnit 测试文件时，你应该在每个测试方法前面都加上一个 <code>@Test</code> 注解，并且（在方法内部）可以有一个或多个 <code>assertEquals</code> 或 <code>assertTrue</code> 方法（这些方法由 JUnit 库提供）。</p>
+<p><strong>所有的测试（方法）都必须是非静态的 (non-static)</strong>。</p>
+<p>这可能看起来有点奇怪，因为你的测试（方法）并不使用实例变量，而且你很可能也不会去实例化这个（测试）类。然而，JUnit 的设计者就是这样决定测试应该如何编写的，所以我们就照做好了。</p>
+</blockquote>
+<h1 id="SLList"><a href="#SLList" class="headerlink" title="SLList"></a>SLList</h1><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> calss IntList{</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> first;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> rest;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Intlist</span><span class="params">(<span class="type">int</span> f, <span class="type">int</span> r)</span>{</span><br><span class="line">        first = f;</span><br><span class="line">        rest = r;</span><br><span class="line">    }</span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>像<code>IntList</code>这样的递归数据结构是裸露的，在java中这是不太合适的</p>
+</blockquote>
+<p>public calss IntNode{<br> public int item;<br> public int next;<br> public IntNode(int i, int n){<br> item = i;<br> next = n;<br> }<br>}</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SLlist</span>{</span><br><span class="line">    <span class="keyword">private</span> IntNode first;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLlist</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        first = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 在列表前添加元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFirst</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">        first = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, first);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 查找第一个元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getFirst</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        <span class="keyword">return</span> first.item;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 在链表最后添加元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        <span class="type">IntNode</span> <span class="variable">p</span> <span class="operator">=</span> first;</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (p.next != <span class="literal">null</span>){</span><br><span class="line">            p = p.next;</span><br><span class="line">        }</span><br><span class="line">        p.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x,<span class="literal">null</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>像<code>SLList</code>这样被封装后的数据结构更易于使用</p>
+<p><code>private</code>关键字与<code>public</code>不同，他的可以避免被除了<code>SLLits</code>类以外的类使用</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;也就是对类的用户隐藏实现细节</p>
+</blockquote>
+<ul>
+<li><p>如果你在java中公开了一些东西，一般来说你应该永远不要删除他</p>
+</li>
+<li><p>私有的东西你可以更改，用户永远不需要知道，但公共的东西应该永远有效</p>
+<h1 id="哨兵节点："><a href="#哨兵节点：" class="headerlink" title="哨兵节点："></a>哨兵节点：</h1><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SLlist</span>{</span><br><span class="line">    <span class="keyword">private</span> IntNode sentinel;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLList</span> <span class="params">()</span>{</span><br><span class="line">        sentinel = <span class="keyword">new</span> <span class="title class_">IntNode</span>(<span class="number">63</span>, <span class="literal">null</span>); <span class="comment">// 这里的63可以是任何数，也可以是-5或72，这无所谓</span></span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLlist</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        sentinel = <span class="keyword">new</span> <span class="title class_">IntNode</span>(<span class="number">63</span>, <span class="literal">null</span>);</span><br><span class="line">        sentinel.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<hr>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
