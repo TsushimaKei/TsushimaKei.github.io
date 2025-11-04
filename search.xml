@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>CS61B--Day01</title>
+    <url>/2025/11/01/CS61B-Day01/</url>
+    <content><![CDATA[<p>java是一个静态类型的语言，不具备有损的隐式转换的功能，定义为int类型时无法赋予5.3这样的值（c语言中则是可以赋值但是会导致精度丢失，也就是“隐式转换”）</p>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>C 语言</strong></th>
+<th><strong>Java 语言</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong><code>int i = 3.14;</code></strong></td>
+<td><strong>允许</strong>（编译通过）</td>
+<td><strong>不允许</strong>（编译错误）</td>
+</tr>
+<tr>
+<td><strong>转换方式</strong></td>
+<td><strong>隐式转换</strong>（Implicit）</td>
+<td><strong>必须显式转换</strong>（Explicit Cast）</td>
+</tr>
+<tr>
+<td><strong>结果</strong></td>
+<td>自动<strong>截断</strong>小数，<code>i</code> 变为 <code>3</code></td>
+<td>必须写成 <code>int i = (int)3.14;</code>，<code>i</code> 才会变为 <code>3</code></td>
+</tr>
+<tr>
+<td><strong>设计哲学</strong></td>
+<td>灵活，相信程序员</td>
+<td>严格，强调类型安全，防止意外的数据丢失</td>
+</tr>
+</tbody></table>
+<hr>
+<ul>
+<li><p>java一般一个(.java)文件只包含一个类，所有代码都包含在类中，同一个文件夹下可以进行相互调用</p>
+</li>
+<li><p>java想要运行一个类需要一个主方法（main）</p>
+</li>
+</ul>
+<hr>
+<p>以下这种是无法运行的</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 这个类只是一个“工具类”或“数据模型”</span></span><br><span class="line"><span class="comment">// 它没有 main 方法，所以它自己不能被运行</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">makeNoise</span><span class="params">()</span> {</span><br><span class="line">        System.out.println(<span class="string">"Bark"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>所以得这样</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DogLauncher</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line"> <span class="comment">// 您的代码从这里开始运行</span></span><br><span class="line">        Dog.makeNoise();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>一个使用另一个类的类有时被称为该类的“客户端”，即 <code>DogLauncher</code> 是 <code>Dog</code> 的客户端。</p>
+</blockquote>
+<ul>
+<li><p>不能从静态(static)内容访问实例属性</p>
+</li>
+<li><p>与c语言不同，c语言中所有东西都有一个值，java中可能存在一种没有值的东西，不是null，就是什么都没有</p>
+</li>
+</ul>
+<hr>
+<p><strong>方法重载</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> weightInPounds;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">()</span>{</span><br><span class="line">        weightInPounds = <span class="number">95</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(<span class="type">int</span> w)</span>{</span><br><span class="line">        weightInPounds = w;   </span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>为什么存在两个<code>public Dog</code>?</strong></p>
+<blockquote>
+<p>因为这两个构造方法的参数列表不同（一个是 0 个参数，一个是 1 个 int 参数），所以 Java 编译器可以毫不费力地将它们区分开。</p>
+</blockquote>
+<hr>
+]]></content>
+      <tags>
+        <tag>CS61B</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CS61B--Day02</title>
     <url>/2025/11/02/CS61B-Day02/</url>
     <content><![CDATA[<h1 id="Testing-测试-："><a href="#Testing-测试-：" class="headerlink" title="Testing(测试)："></a>Testing(测试)：</h1><ul>
@@ -121,26 +191,6 @@
       </tags>
   </entry>
   <entry>
-    <title>CS61B--Day04</title>
-    <url>/2025/11/04/CS61B-Day04/</url>
-    <content><![CDATA[<h1 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h1><ul>
-<li><p>今天没看课，主要把project0的文档看了看，把前三个空给填了(总计用时1.5h)，都是循环遍历没啥难度。</p>
-</li>
-<li><p>难度主要在<code>tilt</code>上，堆了一小时屎没进展。。。然后打了一小时2048，美其名曰深入研究项目逻辑(bushi)</p>
-</li>
-</ul>
-<hr>
-<p>非常曹丹的是今天旷课被发现了，老师还没找我，希望没事。。。</p>
-<p>感觉我还是太敏感了，这点小事都能动摇我(<del>这就是你在图书馆打一小时2048的理由吗/恼</del>)</p>
-<hr>
-<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><p>希望明天能把project0给结束掉吧，然后把tilt逻辑再缕一缕复盘一下，最好再看一节课(<del>我太贪了，可每次都不达预期</del>)</p>
-]]></content>
-      <tags>
-        <tag>CS61B</tag>
-        <tag>划水</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CS61B--Day03</title>
     <url>/2025/11/03/CS61B-Day03/</url>
     <content><![CDATA[<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testMethod</span><span class="params">()</span> {</span><br><span class="line">    assertEquals(&lt;expected&gt;, &lt;actual&gt;);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
@@ -180,73 +230,23 @@
       </tags>
   </entry>
   <entry>
-    <title>CS61B--Day01</title>
-    <url>/2025/11/01/CS61B-Day01/</url>
-    <content><![CDATA[<p>java是一个静态类型的语言，不具备有损的隐式转换的功能，定义为int类型时无法赋予5.3这样的值（c语言中则是可以赋值但是会导致精度丢失，也就是“隐式转换”）</p>
-<table>
-<thead>
-<tr>
-<th><strong>特性</strong></th>
-<th><strong>C 语言</strong></th>
-<th><strong>Java 语言</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><code>int i = 3.14;</code></strong></td>
-<td><strong>允许</strong>（编译通过）</td>
-<td><strong>不允许</strong>（编译错误）</td>
-</tr>
-<tr>
-<td><strong>转换方式</strong></td>
-<td><strong>隐式转换</strong>（Implicit）</td>
-<td><strong>必须显式转换</strong>（Explicit Cast）</td>
-</tr>
-<tr>
-<td><strong>结果</strong></td>
-<td>自动<strong>截断</strong>小数，<code>i</code> 变为 <code>3</code></td>
-<td>必须写成 <code>int i = (int)3.14;</code>，<code>i</code> 才会变为 <code>3</code></td>
-</tr>
-<tr>
-<td><strong>设计哲学</strong></td>
-<td>灵活，相信程序员</td>
-<td>严格，强调类型安全，防止意外的数据丢失</td>
-</tr>
-</tbody></table>
-<hr>
-<ul>
-<li><p>java一般一个(.java)文件只包含一个类，所有代码都包含在类中，同一个文件夹下可以进行相互调用</p>
+    <title>CS61B--Day04</title>
+    <url>/2025/11/04/CS61B-Day04/</url>
+    <content><![CDATA[<h1 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h1><ul>
+<li><p>今天没看课，主要把project0的文档看了看，把前三个空给填了(总计用时1.5h)，都是循环遍历没啥难度。</p>
 </li>
-<li><p>java想要运行一个类需要一个主方法（main）</p>
+<li><p>难度主要在<code>tilt</code>上，堆了一小时屎没进展。。。然后打了一小时2048，美其名曰深入研究项目逻辑(bushi)</p>
 </li>
 </ul>
 <hr>
-<p>以下这种是无法运行的</p>
-<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">// 这个类只是一个“工具类”或“数据模型”</span></span><br><span class="line"><span class="comment">// 它没有 main 方法，所以它自己不能被运行</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">makeNoise</span><span class="params">()</span> {</span><br><span class="line">        System.out.println(<span class="string">"Bark"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>所以得这样</p>
-<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DogLauncher</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line"> <span class="comment">// 您的代码从这里开始运行</span></span><br><span class="line">        Dog.makeNoise();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<blockquote>
-<p>一个使用另一个类的类有时被称为该类的“客户端”，即 <code>DogLauncher</code> 是 <code>Dog</code> 的客户端。</p>
-</blockquote>
-<ul>
-<li><p>不能从静态(static)内容访问实例属性</p>
-</li>
-<li><p>与c语言不同，c语言中所有东西都有一个值，java中可能存在一种没有值的东西，不是null，就是什么都没有</p>
-</li>
-</ul>
+<p>非常曹丹的是今天旷课被发现了，老师还没找我，希望没事。。。</p>
+<p>感觉我还是太敏感了，这点小事都能动摇我(<del>这就是你在图书馆打一小时2048的理由吗/恼</del>)</p>
 <hr>
-<p><strong>方法重载</strong></p>
-<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> weightInPounds;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">()</span>{</span><br><span class="line">        weightInPounds = <span class="number">95</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(<span class="type">int</span> w)</span>{</span><br><span class="line">        weightInPounds = w;   </span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p><strong>为什么存在两个<code>public Dog</code>?</strong></p>
-<blockquote>
-<p>因为这两个构造方法的参数列表不同（一个是 0 个参数，一个是 1 个 int 参数），所以 Java 编译器可以毫不费力地将它们区分开。</p>
-</blockquote>
-<hr>
+<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><p>希望明天能把project0给结束掉吧，然后把tilt逻辑再缕一缕复盘一下，最好再看一节课(<del>我太贪了，可每次都不达预期</del>)</p>
 ]]></content>
       <tags>
         <tag>CS61B</tag>
+        <tag>划水</tag>
       </tags>
   </entry>
 </search>
