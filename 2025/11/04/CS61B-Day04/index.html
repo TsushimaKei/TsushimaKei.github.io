@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tsushimakei.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="今日总结 今天没看课，主要把project0的文档看了看，把前三个空给填了(总计用时1.5h)，都是循环遍历没啥难度。  难度主要在tilt上，堆了一小时屎没进展。。。然后打了一小时2048，美其名曰深入研究项目逻辑(bushi)    非常曹丹的是今天旷课被发现了，老师还没找我，希望没事。。。 感觉我还是太敏感了，这点小事都能动摇我(这就是你在图书馆打一小时2048的理由吗&#x2F;恼)  明日期望希望">
+    <meta name="description" content="今日总结 今天没看课，主要把project0的文档看了看，把前三个空给填了(总计用时1.5h)，都是循环遍历没啥难度。  难度主要在tilt上，堆了一小时屎没进展。。。然后打了一小时2048，美其名曰深入研究项目逻辑(bushi)  今早上数学课的时候把哨兵节点复习了一下  哨兵节点是程序设计之初便存在的节点，并不计入链表中，所以真正的第一个节点应该是sentinel.next     非常曹丹的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS61B--Day04">
 <meta property="og:url" content="https://tsushimakei.github.io/2025/11/04/CS61B-Day04/index.html">
 <meta property="og:site_name" content="对马馨的Blog">
-<meta property="og:description" content="今日总结 今天没看课，主要把project0的文档看了看，把前三个空给填了(总计用时1.5h)，都是循环遍历没啥难度。  难度主要在tilt上，堆了一小时屎没进展。。。然后打了一小时2048，美其名曰深入研究项目逻辑(bushi)    非常曹丹的是今天旷课被发现了，老师还没找我，希望没事。。。 感觉我还是太敏感了，这点小事都能动摇我(这就是你在图书馆打一小时2048的理由吗&#x2F;恼)  明日期望希望">
+<meta property="og:description" content="今日总结 今天没看课，主要把project0的文档看了看，把前三个空给填了(总计用时1.5h)，都是循环遍历没啥难度。  难度主要在tilt上，堆了一小时屎没进展。。。然后打了一小时2048，美其名曰深入研究项目逻辑(bushi)  今早上数学课的时候把哨兵节点复习了一下  哨兵节点是程序设计之初便存在的节点，并不计入链表中，所以真正的第一个节点应该是sentinel.next     非常曹丹的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-04T13:53:42.000Z">
-<meta property="article:modified_time" content="2025-11-04T14:14:23.714Z">
+<meta property="article:modified_time" content="2025-11-04T14:27:04.272Z">
 <meta property="article:author" content="TsushimaKei">
 <meta property="article:tag" content="CS61B">
 <meta property="article:tag" content="划水">
@@ -206,7 +206,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-11-04 21:53:42 / 修改时间：22:14:23" itemprop="dateCreated datePublished" datetime="2025-11-04T21:53:42+08:00">2025-11-04</time>
+      <time title="创建时间：2025-11-04 21:53:42 / 修改时间：22:27:04" itemprop="dateCreated datePublished" datetime="2025-11-04T21:53:42+08:00">2025-11-04</time>
     </span>
 
   
@@ -223,12 +223,17 @@
 </li>
 <li><p>难度主要在<code>tilt</code>上，堆了一小时屎没进展。。。然后打了一小时2048，美其名曰深入研究项目逻辑(bushi)</p>
 </li>
+<li><p>今早上数学课的时候把哨兵节点复习了一下</p>
+<ul>
+<li><strong>哨兵节点</strong>是程序设计之初便存在的节点，并不计入链表中，所以真正的第一个节点应该是<code>sentinel.next</code></li>
+</ul>
+</li>
 </ul>
 <hr>
 <p>非常曹丹的是今天旷课被发现了，老师还没找我，希望没事。。。</p>
 <p>感觉我还是太敏感了，这点小事都能动摇我(<del>这就是你在图书馆打一小时2048的理由吗/恼</del>)</p>
 <hr>
-<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><p>希望明天能把project0给结束掉吧，然后把tilt逻辑再缕一缕复盘一下，最好再看一节课(<del>我太贪了，可每次都不达预期</del>)</p>
+<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><p>希望明天能把project0给结束掉吧，然后把<code>tilt</code>逻辑再缕一缕复盘一下，最好再看一节课(<del>我总是这么贪婪，可每次都不达预期</del>)</p>
 
     </div>
 
