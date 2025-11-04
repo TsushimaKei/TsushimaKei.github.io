@@ -121,6 +121,26 @@
       </tags>
   </entry>
   <entry>
+    <title>CS61B--Day04</title>
+    <url>/2025/11/04/CS61B-Day04/</url>
+    <content><![CDATA[<h1 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h1><ul>
+<li><p>今天没看课，主要把project0的文档看了看，把前三个空给填了(总计用时1.5h)，都是循环遍历没啥难度。</p>
+</li>
+<li><p>难度主要在<code>tilt</code>上，堆了一小时屎没进展。。。然后打了一小时2048，美其名曰深入研究项目逻辑(bushi)</p>
+</li>
+</ul>
+<hr>
+<p>非常曹丹的是今天旷课被发现了，老师还没找我，希望没事。。。</p>
+<p>感觉我还是太敏感了，这点小事都能动摇我(<del>这就是你在图书馆打一小时2048的理由吗/恼</del>)</p>
+<hr>
+<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><p>希望明天能把project0给结束掉吧，然后把tilt逻辑再缕一缕复盘一下，最好再看一节课(<del>我太贪了，可每次都不达预期</del>)</p>
+]]></content>
+      <tags>
+        <tag>CS61B</tag>
+        <tag>划水</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CS61B--Day03</title>
     <url>/2025/11/03/CS61B-Day03/</url>
     <content><![CDATA[<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testMethod</span><span class="params">()</span> {</span><br><span class="line">    assertEquals(&lt;expected&gt;, &lt;actual&gt;);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
