@@ -71,6 +71,70 @@
       </tags>
   </entry>
   <entry>
+    <title>CS61B--Day03</title>
+    <url>/2025/11/03/CS61B-Day03/</url>
+    <content><![CDATA[<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testMethod</span><span class="params">()</span> {</span><br><span class="line">    assertEquals(&lt;expected&gt;, &lt;actual&gt;);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p><code>assertEquals</code>&nbsp;是 JUnit 测试中常用的一个方法。它用于测试变量的实际值是否与其预期值相等。</p>
+<p>当你创建 JUnit 测试文件时，你应该在每个测试方法前面都加上一个 <code>@Test</code> 注解，并且（在方法内部）可以有一个或多个 <code>assertEquals</code> 或 <code>assertTrue</code> 方法（这些方法由 JUnit 库提供）。</p>
+<p><strong>所有的测试（方法）都必须是非静态的 (non-static)</strong>。</p>
+<p>这可能看起来有点奇怪，因为你的测试（方法）并不使用实例变量，而且你很可能也不会去实例化这个（测试）类。然而，JUnit 的设计者就是这样决定测试应该如何编写的，所以我们就照做好了。</p>
+</blockquote>
+<h1 id="SLList"><a href="#SLList" class="headerlink" title="SLList"></a>SLList</h1><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> calss IntList{</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> first;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> rest;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Intlist</span><span class="params">(<span class="type">int</span> f, <span class="type">int</span> r)</span>{</span><br><span class="line">        first = f;</span><br><span class="line">        rest = r;</span><br><span class="line">    }</span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>像<code>IntList</code>这样的递归数据结构是裸露的，在java中这是不太合适的</p>
+</blockquote>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> calss IntNode{</span><br><span class="line">   <span class="keyword">public</span> <span class="type">int</span> item;</span><br><span class="line">   <span class="keyword">public</span> <span class="type">int</span> next;</span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">IntNode</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> n)</span>{</span><br><span class="line">     item = i;</span><br><span class="line">     next = n;</span><br><span class="line">   }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SLlist</span>{</span><br><span class="line">    <span class="keyword">private</span> IntNode first;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLlist</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        first = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 在列表前添加元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFirst</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">        first = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, first);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 查找第一个元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getFirst</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        <span class="keyword">return</span> first.item;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 在链表最后添加元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        <span class="type">IntNode</span> <span class="variable">p</span> <span class="operator">=</span> first;</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (p.next != <span class="literal">null</span>){</span><br><span class="line">            p = p.next;</span><br><span class="line">        }</span><br><span class="line">        p.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x,<span class="literal">null</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>像<code>SLList</code>这样被封装后的数据结构更易于使用</p>
+<p><code>private</code>关键字与<code>public</code>不同，他的可以避免被除了<code>SLLits</code>类以外的类使用</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;也就是对类的用户隐藏实现细节</p>
+</blockquote>
+<ul>
+<li><p>如果你在java中公开了一些东西，一般来说你应该永远不要删除他</p>
+</li>
+<li><p>私有的东西你可以更改，用户永远不需要知道，但公共的东西应该永远有效</p>
+<h1 id="哨兵节点："><a href="#哨兵节点：" class="headerlink" title="哨兵节点："></a>哨兵节点：</h1><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SLlist</span>{</span><br><span class="line">    <span class="keyword">private</span> IntNode sentinel;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLList</span> <span class="params">()</span>{</span><br><span class="line">        sentinel = <span class="keyword">new</span> <span class="title class_">IntNode</span>(<span class="number">63</span>, <span class="literal">null</span>); <span class="comment">// 这里的63可以是任何数，也可以是-5或72，这无所谓</span></span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLlist</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        sentinel = <span class="keyword">new</span> <span class="title class_">IntNode</span>(<span class="number">63</span>, <span class="literal">null</span>);</span><br><span class="line">        sentinel.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<hr>
+]]></content>
+      <tags>
+        <tag>CS61B</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CS61B--Day04</title>
+    <url>/2025/11/04/CS61B-Day04/</url>
+    <content><![CDATA[<h1 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h1><ul>
+<li><p>今天没看课，主要把project0的文档看了看，把前三个空给填了(总计用时1.5h)，都是循环遍历没啥难度。</p>
+</li>
+<li><p>难度主要在<code>tilt</code>上，堆了一小时屎没进展。。。然后打了一小时2048，美其名曰深入研究项目逻辑(bushi)</p>
+</li>
+<li><p>今早上数学课的时候把哨兵节点复习了一下</p>
+<ul>
+<li><strong>哨兵节点</strong>是程序设计之初便存在的节点，并不计入链表中，所以真正的第一个节点应该是<code>sentinel.next</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>非常曹丹的是今天旷课被发现了，老师还没找我，希望没事。。。</p>
+<p>感觉我还是太敏感了，这点小事都能动摇我(<del>这就是你在图书馆打一小时2048的理由吗/恼</del>)</p>
+<hr>
+<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><p>希望明天能把project0给结束掉吧，然后把<code>tilt</code>逻辑再缕一缕复盘一下，最好再看一节课(<del>我总是这么贪婪，可每次都不达预期</del>)</p>
+]]></content>
+      <tags>
+        <tag>CS61B</tag>
+        <tag>划水</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CS61B--Day02</title>
     <url>/2025/11/02/CS61B-Day02/</url>
     <content><![CDATA[<h1 id="Testing-测试-："><a href="#Testing-测试-：" class="headerlink" title="Testing(测试)："></a>Testing(测试)：</h1><ul>
@@ -188,70 +252,6 @@
 ]]></content>
       <tags>
         <tag>CS61B</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CS61B--Day03</title>
-    <url>/2025/11/03/CS61B-Day03/</url>
-    <content><![CDATA[<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testMethod</span><span class="params">()</span> {</span><br><span class="line">    assertEquals(&lt;expected&gt;, &lt;actual&gt;);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<blockquote>
-<p><code>assertEquals</code>&nbsp;是 JUnit 测试中常用的一个方法。它用于测试变量的实际值是否与其预期值相等。</p>
-<p>当你创建 JUnit 测试文件时，你应该在每个测试方法前面都加上一个 <code>@Test</code> 注解，并且（在方法内部）可以有一个或多个 <code>assertEquals</code> 或 <code>assertTrue</code> 方法（这些方法由 JUnit 库提供）。</p>
-<p><strong>所有的测试（方法）都必须是非静态的 (non-static)</strong>。</p>
-<p>这可能看起来有点奇怪，因为你的测试（方法）并不使用实例变量，而且你很可能也不会去实例化这个（测试）类。然而，JUnit 的设计者就是这样决定测试应该如何编写的，所以我们就照做好了。</p>
-</blockquote>
-<h1 id="SLList"><a href="#SLList" class="headerlink" title="SLList"></a>SLList</h1><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> calss IntList{</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> first;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> rest;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Intlist</span><span class="params">(<span class="type">int</span> f, <span class="type">int</span> r)</span>{</span><br><span class="line">        first = f;</span><br><span class="line">        rest = r;</span><br><span class="line">    }</span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<blockquote>
-<p>像<code>IntList</code>这样的递归数据结构是裸露的，在java中这是不太合适的</p>
-</blockquote>
-<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> calss IntNode{</span><br><span class="line">   <span class="keyword">public</span> <span class="type">int</span> item;</span><br><span class="line">   <span class="keyword">public</span> <span class="type">int</span> next;</span><br><span class="line">   <span class="keyword">public</span> <span class="title function_">IntNode</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> n)</span>{</span><br><span class="line">     item = i;</span><br><span class="line">     next = n;</span><br><span class="line">   }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-
-
-<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SLlist</span>{</span><br><span class="line">    <span class="keyword">private</span> IntNode first;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLlist</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        first = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 在列表前添加元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFirst</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">        first = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, first);</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 查找第一个元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getFirst</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        <span class="keyword">return</span> first.item;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">/* 在链表最后添加元素 */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        <span class="type">IntNode</span> <span class="variable">p</span> <span class="operator">=</span> first;</span><br><span class="line">        size += <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (p.next != <span class="literal">null</span>){</span><br><span class="line">            p = p.next;</span><br><span class="line">        }</span><br><span class="line">        p.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x,<span class="literal">null</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<blockquote>
-<p>像<code>SLList</code>这样被封装后的数据结构更易于使用</p>
-<p><code>private</code>关键字与<code>public</code>不同，他的可以避免被除了<code>SLLits</code>类以外的类使用</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;也就是对类的用户隐藏实现细节</p>
-</blockquote>
-<ul>
-<li><p>如果你在java中公开了一些东西，一般来说你应该永远不要删除他</p>
-</li>
-<li><p>私有的东西你可以更改，用户永远不需要知道，但公共的东西应该永远有效</p>
-<h1 id="哨兵节点："><a href="#哨兵节点：" class="headerlink" title="哨兵节点："></a>哨兵节点：</h1><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SLlist</span>{</span><br><span class="line">    <span class="keyword">private</span> IntNode sentinel;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLList</span> <span class="params">()</span>{</span><br><span class="line">        sentinel = <span class="keyword">new</span> <span class="title class_">IntNode</span>(<span class="number">63</span>, <span class="literal">null</span>); <span class="comment">// 这里的63可以是任何数，也可以是-5或72，这无所谓</span></span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SLlist</span><span class="params">(<span class="type">int</span> x)</span>{</span><br><span class="line">        size = <span class="number">1</span>;</span><br><span class="line">        sentinel = <span class="keyword">new</span> <span class="title class_">IntNode</span>(<span class="number">63</span>, <span class="literal">null</span>);</span><br><span class="line">        sentinel.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure></li>
-</ul>
-<hr>
-]]></content>
-      <tags>
-        <tag>CS61B</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CS61B--Day04</title>
-    <url>/2025/11/04/CS61B-Day04/</url>
-    <content><![CDATA[<h1 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h1><ul>
-<li><p>今天没看课，主要把project0的文档看了看，把前三个空给填了(总计用时1.5h)，都是循环遍历没啥难度。</p>
-</li>
-<li><p>难度主要在<code>tilt</code>上，堆了一小时屎没进展。。。然后打了一小时2048，美其名曰深入研究项目逻辑(bushi)</p>
-</li>
-<li><p>今早上数学课的时候把哨兵节点复习了一下</p>
-<ul>
-<li><strong>哨兵节点</strong>是程序设计之初便存在的节点，并不计入链表中，所以真正的第一个节点应该是<code>sentinel.next</code></li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>非常曹丹的是今天旷课被发现了，老师还没找我，希望没事。。。</p>
-<p>感觉我还是太敏感了，这点小事都能动摇我(<del>这就是你在图书馆打一小时2048的理由吗/恼</del>)</p>
-<hr>
-<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><p>希望明天能把project0给结束掉吧，然后把<code>tilt</code>逻辑再缕一缕复盘一下，最好再看一节课(<del>我总是这么贪婪，可每次都不达预期</del>)</p>
-]]></content>
-      <tags>
-        <tag>CS61B</tag>
-        <tag>划水</tag>
       </tags>
   </entry>
 </search>
