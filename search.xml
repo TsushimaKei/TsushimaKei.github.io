@@ -254,4 +254,42 @@
         <tag>CS61B</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CS61B--Day05</title>
+    <url>/2025/11/05/CS61B-Day05/</url>
+    <content><![CDATA[<h1 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h1><p><strong>过了测试的代码也未必是正确的</strong></p>
+<ul>
+<li><p>主要是我的<code>atLeastOneMoveExists</code>方法虽然过了测试但为我后面运行埋下了了隐患（老实说我写的时候就感觉到了不对劲，但过了测试就没管，后面这颗地雷果然爆炸了）</p>
+</li>
+<li><p>我原本是这样写的：</p>
+</li>
+<li><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (col &lt; b.size() -<span class="number">1</span>) {</span><br><span class="line">      <span class="keyword">if</span> (b.tile(col, row).value() == b.tile(col+<span class="number">1</span>, row).value()) {</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;这样是能过测试，但是我没有判断他的右侧是不是<code>null</code>，如果不判断会导致越界，因为一个<code>null</code>值没有<code>value</code>属性，如果强行判断就会导致程序崩溃。</p>
+<p>所以需要加一句<code>b.tile(col, row+1) != null</code></p>
+<p><strong>关于<code>tilt</code>简单写一下要注意的点</strong></p>
+<ol>
+<li><p>把棋盘拆成多列，每列的梅格只考虑怎么向上移动，该移动多少格</p>
+</li>
+<li><p>从第二行开始判断，<strong>我</strong>的上一格能不能移动</p>
+<ol>
+<li><p>如果能，继续向上判断</p>
+</li>
+<li><p>如果不能跳出</p>
+</li>
+</ol>
+</li>
+<li><p>需要一个<code>boolean</code>类型的函数判断这个瓦片有没有合并过</p>
+</li>
+<li><p>注意不要跳出棋盘</p>
+</li>
+</ol>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;代码就不贴了，太屎</p>
+<hr>
+]]></content>
+      <tags>
+        <tag>CS61B</tag>
+        <tag>project</tag>
+      </tags>
+  </entry>
 </search>
