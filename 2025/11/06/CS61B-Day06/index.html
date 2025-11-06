@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tsushimakei.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="DLList(双向链表) Generics(泛型)DLList&lt;Double&gt; s1 &#x3D; new DLList&lt;&gt;(5.3);这里的&lt;&gt;是指java中的核心特性–泛型(Generics)  尖括号就像一个“标签”，你用它来告诉一个“容器”类（比如 DLList），这个容器专门用来装什么类型的东西。  为什么需要泛型？DLList 就像一个盒子：  没有尖括号：D">
+    <meta name="description" content="DLList(双向链表)双向链表的特点是他不仅知道他的下一个节点(next)是谁，他还知道自己的上一个节点(prev) 1234567891011121314151617public class DLList&lt;T&gt; { &#x2F;&#x2F; 这是一个泛型类，&quot;T&quot; 是类型的占位符&#x2F;&#x2F; 1. 定义私有的内部 Node 类&#x2F;&#x2F; (设为 non-static，这样它可以直接使用外部 DLList&lt;T&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS61B--Day06">
 <meta property="og:url" content="https://tsushimakei.github.io/2025/11/06/CS61B-Day06/index.html">
 <meta property="og:site_name" content="对马馨的Blog">
-<meta property="og:description" content="DLList(双向链表) Generics(泛型)DLList&lt;Double&gt; s1 &#x3D; new DLList&lt;&gt;(5.3);这里的&lt;&gt;是指java中的核心特性–泛型(Generics)  尖括号就像一个“标签”，你用它来告诉一个“容器”类（比如 DLList），这个容器专门用来装什么类型的东西。  为什么需要泛型？DLList 就像一个盒子：  没有尖括号：D">
+<meta property="og:description" content="DLList(双向链表)双向链表的特点是他不仅知道他的下一个节点(next)是谁，他还知道自己的上一个节点(prev) 1234567891011121314151617public class DLList&lt;T&gt; { &#x2F;&#x2F; 这是一个泛型类，&quot;T&quot; 是类型的占位符&#x2F;&#x2F; 1. 定义私有的内部 Node 类&#x2F;&#x2F; (设为 non-static，这样它可以直接使用外部 DLList&lt;T&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-06T04:49:25.000Z">
-<meta property="article:modified_time" content="2025-11-06T08:16:00.724Z">
+<meta property="article:modified_time" content="2025-11-06T11:47:49.577Z">
 <meta property="article:author" content="TsushimaKei">
 <meta property="article:tag" content="CS61B">
 <meta name="twitter:card" content="summary">
@@ -130,7 +130,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DLList-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">DLList(双向链表)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generics-%E6%B3%9B%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">Generics(泛型)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DLList-s1-new-DLList-5-3"><span class="nav-number">2.1.</span> <span class="nav-text">DLList&lt;Double&gt; s1 &#x3D; new DLList&lt;&gt;(5.3);</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%B3%9B%E5%9E%8B%EF%BC%9F"><span class="nav-number">2.1.1.</span> <span class="nav-text">为什么需要泛型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%A6%82%E4%BD%95-%E4%BD%BF%E7%94%A8-%E6%B3%9B%E5%9E%8B%E7%B1%BB-%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E7%94%A8%E6%B3%95"><span class="nav-number">2.1.2.</span> <span class="nav-text">1. 如何 使用 泛型类 (最常见的用法)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A6%82%E4%BD%95-%E5%AE%9A%E4%B9%89-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="nav-number">2.1.3.</span> <span class="nav-text">2. 如何 定义 自己的泛型类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%A6%82%E4%BD%95-%E5%AE%9A%E4%B9%89-%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95-%E5%B7%A5%E5%85%B7%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.4.</span> <span class="nav-text">3. 如何 定义 泛型方法 (工具方法)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Array-%E6%95%B0%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">Array(数组)</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#DLList-%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8"><span class="nav-number">1.</span> <span class="nav-text">DLList(双向链表)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generics-%E6%B3%9B%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">Generics(泛型)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DLList-s1-new-DLList-5-3"><span class="nav-number">2.1.</span> <span class="nav-text">DLList&lt;Double&gt; s1 &#x3D; new DLList&lt;&gt;(5.3);</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%B3%9B%E5%9E%8B%EF%BC%9F"><span class="nav-number">2.1.1.</span> <span class="nav-text">为什么需要泛型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E5%A6%82%E4%BD%95-%E4%BD%BF%E7%94%A8-%E6%B3%9B%E5%9E%8B%E7%B1%BB-%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E7%94%A8%E6%B3%95"><span class="nav-number">2.1.2.</span> <span class="nav-text">1. 如何 使用 泛型类 (最常见的用法)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%A6%82%E4%BD%95-%E5%AE%9A%E4%B9%89-%E8%87%AA%E5%B7%B1%E7%9A%84%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="nav-number">2.1.3.</span> <span class="nav-text">2. 如何 定义 自己的泛型类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%A6%82%E4%BD%95-%E5%AE%9A%E4%B9%89-%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95-%E5%B7%A5%E5%85%B7%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.4.</span> <span class="nav-text">3. 如何 定义 泛型方法 (工具方法)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Array-%E6%95%B0%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">Array(数组)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8A%E6%97%A5%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">今日总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%8E%E6%97%A5%E6%9C%9F%E6%9C%9B"><span class="nav-number">5.</span> <span class="nav-text">明日期望</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -205,7 +205,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-11-06 12:49:25 / 修改时间：16:16:00" itemprop="dateCreated datePublished" datetime="2025-11-06T12:49:25+08:00">2025-11-06</time>
+      <time title="创建时间：2025-11-06 12:49:25 / 修改时间：19:47:49" itemprop="dateCreated datePublished" datetime="2025-11-06T12:49:25+08:00">2025-11-06</time>
     </span>
 
   
@@ -217,7 +217,12 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="DLList-双向链表"><a href="#DLList-双向链表" class="headerlink" title="DLList(双向链表)"></a>DLList(双向链表)</h1><hr>
+    <div class="post-body" itemprop="articleBody"><h1 id="DLList-双向链表"><a href="#DLList-双向链表" class="headerlink" title="DLList(双向链表)"></a>DLList(双向链表)</h1><p>双向链表的特点是他不仅知道他的下一个节点(next)是谁，他还知道自己的上一个节点(prev)</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DLList</span>&lt;T&gt; { <span class="comment">// 这是一个泛型类，"T" 是类型的占位符// 1. 定义私有的内部 Node 类</span></span><br><span class="line"><span class="comment">// (设为 non-static，这样它可以直接使用外部 DLList&lt;T&gt; 的泛型 "T")</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Node</span> {</span><br><span class="line">        <span class="keyword">public</span> T item;      <span class="comment">// 节点存放的数据 (T 类型)</span></span><br><span class="line">        <span class="keyword">public</span> Node prev;   <span class="comment">// 指向前一个节点的引用</span></span><br><span class="line">        <span class="keyword">public</span> Node next;   <span class="comment">// 指向后一个节点的引用</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Node 的构造函数</span></span><br><span class="line">    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T i, Node p, Node n)</span> {</span><br><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;        <span class="built_in">this</span>.item = i;</span><br><span class="line">        &nbsp;&nbsp;&nbsp;&nbsp;<span class="built_in">this</span>.prev = p;</span><br><span class="line">    &nbsp;&nbsp;&nbsp;&nbsp;    <span class="built_in">this</span>.next = n;</span><br><span class="line">    }</span><br><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<hr>
 <h1 id="Generics-泛型"><a href="#Generics-泛型" class="headerlink" title="Generics(泛型)"></a>Generics(泛型)</h1><h2 id="DLList-s1-new-DLList-5-3"><a href="#DLList-s1-new-DLList-5-3" class="headerlink" title="DLList<Double> s1 = new DLList<>(5.3);"></a><strong><code>DLList&lt;Double&gt; s1 = new DLList&lt;&gt;(5.3);</code></strong></h2><p>这里的<code>&lt;&gt;</code>是指java中的核心特性–泛型(Generics)</p>
 <ul>
 <li><p>尖括号就像一个“标签”，你用它来告诉一个“容器”类（比如 <code>DLList</code>），这个容器<em>专门</em>用来装什么类型的东西。</p>
@@ -297,7 +302,7 @@
 </tr>
 </tbody></table>
 <hr>
-<h1 id="Array-数组"><a href="#Array-数组" class="headerlink" title="Array(数组)"></a>Array(数组)</h1><p>每当创建一个数组时，你会得到一个引用，如果丢掉了对这个数组的<strong>唯一</strong>引用，那么将永远无法取回（类和对象同理），也就是会被<strong>垃圾回收(Garbage Collection, GC)</strong></p>
+<h1 id="Array-数组"><a href="#Array-数组" class="headerlink" title="Array(数组)"></a>Array(数组)</h1><p>每当创建一个数组时，你会得到一个引用，如果丢掉了对这个数组的<strong>唯一</strong>引用，那么他将永远无法取回（类和对象同理），也就是会被<strong>垃圾回收(Garbage Collection, GC)</strong></p>
 <p>和类不同的是，我们不能对数组添加自定义的方法，它们只是数据 ，会有长度(<code>lenght</code>)和一系列编号的内存框</p>
 <p><code>System.arraycopy(b, 0, x, 3, 2);</code>：</p>
 <ul>
@@ -306,6 +311,20 @@
 <li><p>如果<code>x</code>位置不够会崩溃</p>
 </li>
 <li><p>这种方法比手动<code>for</code>循环复制数组要快</p>
+</li>
+</ul>
+<hr>
+<h1 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h1><ul>
+<li><p>听课的时候DLList这块听的迷迷糊糊，需要复习</p>
+</li>
+<li><p>discussion没做，主要是水群看到有人聊AI infra岗不卡学历，一不小心多看了一会，给我时间挤没了。。。</p>
+</li>
+</ul>
+<hr>
+<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><ul>
+<li><p>把disc做了</p>
+</li>
+<li><p>复习DLList，亲手实现下双向链表</p>
 </li>
 </ul>
 

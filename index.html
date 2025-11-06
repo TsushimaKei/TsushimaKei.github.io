@@ -200,7 +200,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-11-06 12:49:25 / 修改时间：16:16:00" itemprop="dateCreated datePublished" datetime="2025-11-06T12:49:25+08:00">2025-11-06</time>
+      <time title="创建时间：2025-11-06 12:49:25 / 修改时间：19:47:49" itemprop="dateCreated datePublished" datetime="2025-11-06T12:49:25+08:00">2025-11-06</time>
     </span>
 
   
@@ -213,7 +213,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="DLList-双向链表"><a href="#DLList-双向链表" class="headerlink" title="DLList(双向链表)"></a>DLList(双向链表)</h1><hr>
+          <h1 id="DLList-双向链表"><a href="#DLList-双向链表" class="headerlink" title="DLList(双向链表)"></a>DLList(双向链表)</h1><p>双向链表的特点是他不仅知道他的下一个节点(next)是谁，他还知道自己的上一个节点(prev)</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DLList</span>&lt;T&gt; { <span class="comment">// 这是一个泛型类，"T" 是类型的占位符// 1. 定义私有的内部 Node 类</span></span><br><span class="line"><span class="comment">// (设为 non-static，这样它可以直接使用外部 DLList&lt;T&gt; 的泛型 "T")</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Node</span> {</span><br><span class="line">        <span class="keyword">public</span> T item;      <span class="comment">// 节点存放的数据 (T 类型)</span></span><br><span class="line">        <span class="keyword">public</span> Node prev;   <span class="comment">// 指向前一个节点的引用</span></span><br><span class="line">        <span class="keyword">public</span> Node next;   <span class="comment">// 指向后一个节点的引用</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Node 的构造函数</span></span><br><span class="line">    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T i, Node p, Node n)</span> {</span><br><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;        <span class="built_in">this</span>.item = i;</span><br><span class="line">        &nbsp;&nbsp;&nbsp;&nbsp;<span class="built_in">this</span>.prev = p;</span><br><span class="line">    &nbsp;&nbsp;&nbsp;&nbsp;    <span class="built_in">this</span>.next = n;</span><br><span class="line">    }</span><br><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<hr>
 <h1 id="Generics-泛型"><a href="#Generics-泛型" class="headerlink" title="Generics(泛型)"></a>Generics(泛型)</h1><h2 id="DLList-s1-new-DLList-5-3"><a href="#DLList-s1-new-DLList-5-3" class="headerlink" title="DLList<Double> s1 = new DLList<>(5.3);"></a><strong><code>DLList&lt;Double&gt; s1 = new DLList&lt;&gt;(5.3);</code></strong></h2><p>这里的<code>&lt;&gt;</code>是指java中的核心特性–泛型(Generics)</p>
 <ul>
 <li><p>尖括号就像一个“标签”，你用它来告诉一个“容器”类（比如 <code>DLList</code>），这个容器<em>专门</em>用来装什么类型的东西。</p>
@@ -293,7 +298,7 @@
 </tr>
 </tbody></table>
 <hr>
-<h1 id="Array-数组"><a href="#Array-数组" class="headerlink" title="Array(数组)"></a>Array(数组)</h1><p>每当创建一个数组时，你会得到一个引用，如果丢掉了对这个数组的<strong>唯一</strong>引用，那么将永远无法取回（类和对象同理），也就是会被<strong>垃圾回收(Garbage Collection, GC)</strong></p>
+<h1 id="Array-数组"><a href="#Array-数组" class="headerlink" title="Array(数组)"></a>Array(数组)</h1><p>每当创建一个数组时，你会得到一个引用，如果丢掉了对这个数组的<strong>唯一</strong>引用，那么他将永远无法取回（类和对象同理），也就是会被<strong>垃圾回收(Garbage Collection, GC)</strong></p>
 <p>和类不同的是，我们不能对数组添加自定义的方法，它们只是数据 ，会有长度(<code>lenght</code>)和一系列编号的内存框</p>
 <p><code>System.arraycopy(b, 0, x, 3, 2);</code>：</p>
 <ul>
@@ -302,6 +307,20 @@
 <li><p>如果<code>x</code>位置不够会崩溃</p>
 </li>
 <li><p>这种方法比手动<code>for</code>循环复制数组要快</p>
+</li>
+</ul>
+<hr>
+<h1 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h1><ul>
+<li><p>听课的时候DLList这块听的迷迷糊糊，需要复习</p>
+</li>
+<li><p>discussion没做，主要是水群看到有人聊AI infra岗不卡学历，一不小心多看了一会，给我时间挤没了。。。</p>
+</li>
+</ul>
+<hr>
+<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><ul>
+<li><p>把disc做了</p>
+</li>
+<li><p>复习DLList，亲手实现下双向链表</p>
 </li>
 </ul>
 
