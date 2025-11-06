@@ -139,7 +139,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,6 +161,166 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tsushimakei.github.io/2025/11/06/CS61B-Day06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="TsushimaKei">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="对马馨的Blog">
+      <meta itemprop="description" content="不要比较">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 对马馨的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/11/06/CS61B-Day06/" class="post-title-link" itemprop="url">CS61B--Day06</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-11-06 12:49:25 / 修改时间：16:16:00" itemprop="dateCreated datePublished" datetime="2025-11-06T12:49:25+08:00">2025-11-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="DLList-双向链表"><a href="#DLList-双向链表" class="headerlink" title="DLList(双向链表)"></a>DLList(双向链表)</h1><hr>
+<h1 id="Generics-泛型"><a href="#Generics-泛型" class="headerlink" title="Generics(泛型)"></a>Generics(泛型)</h1><h2 id="DLList-s1-new-DLList-5-3"><a href="#DLList-s1-new-DLList-5-3" class="headerlink" title="DLList<Double> s1 = new DLList<>(5.3);"></a><strong><code>DLList&lt;Double&gt; s1 = new DLList&lt;&gt;(5.3);</code></strong></h2><p>这里的<code>&lt;&gt;</code>是指java中的核心特性–泛型(Generics)</p>
+<ul>
+<li><p>尖括号就像一个“标签”，你用它来告诉一个“容器”类（比如 <code>DLList</code>），这个容器<em>专门</em>用来装什么类型的东西。</p>
+</li>
+<li><h3 id="为什么需要泛型？"><a href="#为什么需要泛型？" class="headerlink" title="为什么需要泛型？"></a>为什么需要泛型？</h3><p><code>DLList</code> 就像一个<strong>盒子</strong>：</p>
+<ul>
+<li><p><strong>没有尖括号</strong>：<code>DLList s1 = new DLList();</code></p>
+</li>
+<li><p>这是一个<strong>什么都能装</strong>的盒子。你可以往里面放一个 <code>Double</code> (5.3)，一个 <code>String</code> (“hello”)，甚至一个 <code>Dog</code> 对象。</p>
+</li>
+<li><p><strong>问题：</strong> 当你从盒子里取东西时，你只知道它是个 <code>Object</code>（对象），你不知道它<em>具体</em>是什么。你必须<strong>强制转换</strong>它 (<code>Double d = (Double) s1.get(0);</code>)。如果你猜错了（比如你以为是 <code>Double</code>，但取出来的是 “hello”），程序就会在运行时<strong>崩溃</strong>。</p>
+</li>
+<li><p><strong>有尖括号 (泛型方法)</strong>：<code>DLList&lt;Double&gt; s1 = ...</code></p>
+<ul>
+<li><p>标志只能存放<code>Double</code>类型</p>
+</li>
+<li><p><strong>优点1 (类型安全 Type Safety)：</strong> 如果你试图往里放一个 <code>String</code> (<code>s1.add("hello");</code>)，程序在<strong>编译时</strong>就会立刻报错。这就提前帮你防止了 bug。</p>
+</li>
+<li><p><strong>优点 2 (免去强制转换 No Casting)：</strong> 当你从这个盒子里取东西时（<code>s1.get(0)</code>），Java 100% 确定它是一个 <code>Double</code>。你不需要再做任何强制转换，可以直接用 <code>Double</code> 变量来接收它：<code>Double d = s1.get(0);</code></p>
+</li>
+</ul>
+<p>在 Java 泛型中，你<strong>不能</strong>使用<strong>基本类型 (primitive types)</strong>（比如 <code>int</code>, <code>double</code>, <code>char</code>）。</p>
+<p>你<strong>必须</strong>使用它们对应的<strong>包装类 (Wrapper Classes)</strong>。</p>
+<ul>
+<li><p><strong>错误</strong>：<code>DLList&lt;int&gt; list = ...</code></p>
+</li>
+<li><p><strong>正确</strong>：<code>DLList&lt;Integer&gt; list = ...</code></p>
+</li>
+<li><p><strong>错误</strong>：<code>DLList&lt;double&gt; list = ...</code></p>
+</li>
+<li><p><strong>正确</strong>：<code>DLList&lt;Double&gt; list = ...</code></p>
+</li>
+</ul>
+<h3 id="1-如何-使用-泛型类-最常见的用法"><a href="#1-如何-使用-泛型类-最常见的用法" class="headerlink" title="1. 如何 使用 泛型类 (最常见的用法)"></a>1. 如何 <em>使用</em> 泛型类 (最常见的用法)</h3><p>这是你已经见过的用法，比如使用 Java 自带的 <code>ArrayList</code> 或你自己的 <code>DLList</code>。</p>
+<p><strong>核心：</strong> 在声明变量和创建对象时，用 <code>&lt;&gt;</code> 告诉 Java 你这个容器里要装什么。</p>
+<p><strong>示例：使用 <code>ArrayList</code></strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 声明：告诉 Java "names" 是一个 "只装 String 的列表"</span></span><br><span class="line">List&lt;String&gt; names;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 实例化 (创建对象)</span></span><br><span class="line"><span class="comment">//    使用 "钻石操作符" &lt;&gt;，Java 会自动推断类型</span></span><br><span class="line">names = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(); </span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 使用 (现在是类型安全的)</span></span><br><span class="line">names.add(<span class="string">"张三"</span>);        <span class="comment">// 正确</span></span><br><span class="line">names.add(<span class="string">"李四"</span>);        <span class="comment">// 正确</span></span><br><span class="line"><span class="comment">// names.add(123);       // 编译错误！不能把 int 放进 String 列表</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 取出 (不需要强制类型转换)</span></span><br><span class="line"><span class="type">String</span> <span class="variable">firstName</span> <span class="operator">=</span> names.get(<span class="number">0</span>); <span class="comment">// 直接就是 String 类型</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="2-如何-定义-自己的泛型类"><a href="#2-如何-定义-自己的泛型类" class="headerlink" title="2. 如何 定义 自己的泛型类"></a>2. 如何 <em>定义</em> 自己的泛型类</h3><p>当你<strong>创建</strong> <code>DLList</code> 类时，需要使用一个<strong>占位符</strong>（通常是单个大写字母，比如 <code>T</code>）来代表“某个未来会指定的类型”。</p>
+<p><strong>在 <code>class</code> 名字后面加上 <code>&lt;T&gt;</code>，然后在类内部用 <code>T</code> 作为类型。</strong></p>
+<p><strong>示例：创建一个泛型的 <code>Box</code> 类</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// "T" 是一个 "类型占位符" (Type Parameter)</span></span><br><span class="line"><span class="comment">// 别人用你的 Box 类时，会用一个真实类型 (如 Integer) 替换 T</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Box</span>&lt;T&gt; {</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 你的实例变量的类型不再是 "int" 或 "String"，而是 "T"</span></span><br><span class="line">    <span class="keyword">private</span> T item;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Box</span><span class="params">(T item)</span> {</span><br><span class="line">        <span class="built_in">this</span>.item = item;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// setter 方法的参数类型是 T</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">set</span><span class="params">(T item)</span> {</span><br><span class="line">        <span class="built_in">this</span>.item = item;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// getter 方法的返回类型是 T</span></span><br><span class="line">    <span class="keyword">public</span> T <span class="title function_">get</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.item;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>这个 <code>Box&lt;T&gt;</code> 类怎么用呢？</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 创建一个 "装 Integer 的盒子"</span></span><br><span class="line"><span class="comment">//    (此时，Box 类中所有的 T 都会被替换为 Integer)</span></span><br><span class="line">Box&lt;Integer&gt; integerBox = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;(<span class="number">10</span>);</span><br><span class="line">integerBox.set(<span class="number">20</span>);</span><br><span class="line"><span class="type">Integer</span> <span class="variable">number</span> <span class="operator">=</span> integerBox.get(); <span class="comment">// 返回的是 Integer</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. 创建一个 "装 String 的盒子"</span></span><br><span class="line"><span class="comment">//    (此时，Box 类中所有的 T 都会被替换为 String)</span></span><br><span class="line">Box&lt;String&gt; stringBox = <span class="keyword">new</span> <span class="title class_">Box</span>&lt;&gt;(<span class="string">"你好"</span>);</span><br><span class="line">stringBox.set(<span class="string">"世界"</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">text</span> <span class="operator">=</span> stringBox.get(); <span class="comment">// 返回的是 String</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在你的 <code>DLList&lt;T&gt;</code> 项目中，你的 <code>Node</code> 节点会有一个 <code>T item</code> 变量，你的 <code>addFirst(T x)</code> 方法会接受一个 <code>T</code> 类型的参数。</p>
+<h3 id="3-如何-定义-泛型方法-工具方法"><a href="#3-如何-定义-泛型方法-工具方法" class="headerlink" title="3. 如何 定义 泛型方法 (工具方法)"></a>3. 如何 <em>定义</em> 泛型方法 (工具方法)</h3><p>我们可以创建一个不依赖于泛型类的、独立的泛型方法。</p>
+<p><strong>在方法的返回类型之前，加上 <code>&lt;T&gt;</code> 来声明它是一个泛型方法。</strong></p>
+<p><strong>示例：一个打印任何类型数组的工具方法</strong></p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Utils</span> {</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这个 &lt;T&gt; 声明了它是一个泛型方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">printArray</span><span class="params">(T[] array)</span> {</span><br><span class="line">        <span class="keyword">for</span> (T element : array) {</span><br><span class="line">            System.out.println(element);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如何使用这个泛型方法</span></span><br><span class="line">Integer[] numbers = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>};</span><br><span class="line">String[] words = {<span class="string">"Hello"</span>, <span class="string">"World"</span>};</span><br><span class="line"></span><br><span class="line">Utils.printArray(numbers); <span class="comment">// T 被推断为 Integer</span></span><br><span class="line">Utils.printArray(words);   <span class="comment">// T 被推断为 String</span></span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>基本类型 (Primitive)</strong></th>
+<th align="left"><strong>包装类 (Wrapper)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>int</code></td>
+<td align="left"><code>Integer</code></td>
+</tr>
+<tr>
+<td><code>double</code></td>
+<td align="left"><code>Double</code></td>
+</tr>
+<tr>
+<td><code>char</code></td>
+<td align="left"><code>Character</code></td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td align="left"><code>Boolean</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="Array-数组"><a href="#Array-数组" class="headerlink" title="Array(数组)"></a>Array(数组)</h1><p>每当创建一个数组时，你会得到一个引用，如果丢掉了对这个数组的<strong>唯一</strong>引用，那么将永远无法取回（类和对象同理），也就是会被<strong>垃圾回收(Garbage Collection, GC)</strong></p>
+<p>和类不同的是，我们不能对数组添加自定义的方法，它们只是数据 ，会有长度(<code>lenght</code>)和一系列编号的内存框</p>
+<p><code>System.arraycopy(b, 0, x, 3, 2);</code>：</p>
+<ul>
+<li><p>从<code>b</code>数组的<code>[0]</code>索引开始的两个值复制到<code>x</code>数组的<code>[3]</code>索引开始的两个值身上</p>
+</li>
+<li><p>如果<code>x</code>位置不够会崩溃</p>
+</li>
+<li><p>这种方法比手动<code>for</code>循环复制数组要快</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
