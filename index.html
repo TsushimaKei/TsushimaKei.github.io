@@ -139,7 +139,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -161,6 +161,113 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tsushimakei.github.io/2025/11/07/CS61B-Day07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="TsushimaKei">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="对马馨的Blog">
+      <meta itemprop="description" content="不要比较">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 对马馨的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/11/07/CS61B-Day07/" class="post-title-link" itemprop="url">CS61B--Day07</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-11-07 14:24:37 / 修改时间：17:33:33" itemprop="dateCreated datePublished" datetime="2025-11-07T14:24:37+08:00">2025-11-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="AList-数组列表"><a href="#AList-数组列表" class="headerlink" title="AList(数组列表)"></a>AList(数组列表)</h1><blockquote>
+<p><code> AList</code> 的核心思想是<strong>使用一个数组（Array）作为底层结构来实现 “列表” (List) 的功能</strong>。</p>
+</blockquote>
+<hr>
+<h1 id="SLList-VS-AList"><a href="#SLList-VS-AList" class="headerlink" title="SLList VS AList"></a>SLList VS AList</h1><table>
+<thead>
+<tr>
+<th><strong>数据结构</strong></th>
+<th><strong>操作 (Operation)</strong></th>
+<th><strong>时间复杂度 (Time Complexity)</strong></th>
+<th><strong>备注</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>SLLiSt (单链表)</strong></td>
+<td>头部插入</td>
+<td><strong>$O(1)$</strong></td>
+<td>非常快（常数时间）</td>
+</tr>
+<tr>
+<td></td>
+<td>尾部 / 按索引插入¹</td>
+<td><strong>$O(N)$</strong></td>
+<td>需要遍历（线性时间）</td>
+</tr>
+<tr>
+<td><strong>AList (数组列表)</strong></td>
+<td>尾部插入</td>
+<td><strong>$O(1)$ (摊销)</strong></td>
+<td>平均很快（摊销常数时间）</td>
+</tr>
+<tr>
+<td></td>
+<td>头部 / 按索引插入</td>
+<td><strong>$O(N)$</strong></td>
+<td>需要移动元素（线性时间）#</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -198,9 +305,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-11-06 12:49:25 / 修改时间：19:47:49" itemprop="dateCreated datePublished" datetime="2025-11-06T12:49:25+08:00">2025-11-06</time>
+      <time title="创建时间：2025-11-06 12:49:25" itemprop="dateCreated datePublished" datetime="2025-11-06T12:49:25+08:00">2025-11-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-11-07 17:20:54" itemprop="dateModified" datetime="2025-11-07T17:20:54+08:00">2025-11-07</time>
     </span>
 
   
@@ -213,11 +326,86 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="DLList-双向链表"><a href="#DLList-双向链表" class="headerlink" title="DLList(双向链表)"></a>DLList(双向链表)</h1><p>双向链表的特点是他不仅知道他的下一个节点(next)是谁，他还知道自己的上一个节点(prev)</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DLList</span>&lt;T&gt; { <span class="comment">// 这是一个泛型类，"T" 是类型的占位符// 1. 定义私有的内部 Node 类</span></span><br><span class="line"><span class="comment">// (设为 non-static，这样它可以直接使用外部 DLList&lt;T&gt; 的泛型 "T")</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Node</span> {</span><br><span class="line">        <span class="keyword">public</span> T item;      <span class="comment">// 节点存放的数据 (T 类型)</span></span><br><span class="line">        <span class="keyword">public</span> Node prev;   <span class="comment">// 指向前一个节点的引用</span></span><br><span class="line">        <span class="keyword">public</span> Node next;   <span class="comment">// 指向后一个节点的引用</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Node 的构造函数</span></span><br><span class="line">    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T i, Node p, Node n)</span> {</span><br><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;        <span class="built_in">this</span>.item = i;</span><br><span class="line">        &nbsp;&nbsp;&nbsp;&nbsp;<span class="built_in">this</span>.prev = p;</span><br><span class="line">    &nbsp;&nbsp;&nbsp;&nbsp;    <span class="built_in">this</span>.next = n;</span><br><span class="line">    }</span><br><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;}</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <h1 id="DLList-双向链表"><a href="#DLList-双向链表" class="headerlink" title="DLList(双向链表)"></a>DLList(双向链表)</h1><p>双向链表的“灵魂”在于它的节点。与（单向）链表不同，<code>DLList</code> 的每个节点不仅知道它的<strong>下一个 (<code>next</code>)</strong> 节点是谁，还知道它的<strong>上一个 (<code>prev</code>)</strong> 节点是谁。</p>
+<p>这个 <code>Node</code> 类最好是作为 <code>DLList</code> 的一个<strong>内部私有类 (private inner class)</strong>，因为除了 <code>DLList</code> 自己，没有其他人需要知道 <code>Node</code> 的具体实现细节。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DLList</span>&lt;T&gt; { <span class="comment">// 这是一个泛型类，"T" 是类型的占位符// 1. 定义私有的内部 Node 类</span></span><br><span class="line"><span class="comment">// (设为 non-static，这样它可以直接使用外部 DLList&lt;T&gt; 的泛型 "T")</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Node</span> {</span><br><span class="line">        <span class="keyword">public</span> T item;      <span class="comment">// 节点存放的数据 (T 类型)</span></span><br><span class="line">        <span class="keyword">public</span> Node prev;   <span class="comment">// 指向前一个节点的引用</span></span><br><span class="line">        <span class="keyword">public</span> Node next;   <span class="comment">// 指向后一个节点的引用</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Node 的构造函数</span></span><br><span class="line">    &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(T i, Node p, Node n)</span> {</span><br><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;        <span class="built_in">this</span>.item = i;</span><br><span class="line">        &nbsp;&nbsp;&nbsp;&nbsp;<span class="built_in">this</span>.prev = p;</span><br><span class="line">    &nbsp;&nbsp;&nbsp;&nbsp;    <span class="built_in">this</span>.next = n;</span><br><span class="line">    }</span><br><span class="line">&nbsp;&nbsp;&nbsp;&nbsp;}</span><br></pre></td></tr></tbody></table></figure>
 
+<p>现在我们来构建 <code>DLList</code> 类本身。它需要两个<strong>实例变量</strong>：</p>
+<ol>
+<li><p><code>size</code>：一个 <code>int</code>，用于跟踪链表中有多少个元素。</p>
+</li>
+<li><p><code>sentinel</code>：一个 <code>Node</code>，这是实现 <code>DLList</code> <strong>最巧妙</strong>的地方。</p>
+</li>
+</ol>
+<p>什么是哨兵节点 (Sentinel Node)？</p>
+<p>它是一个“虚拟”的、不存储任何真实数据的“哑 (dummy)”节点。我们用它来同时代表链表的“头部”和“尾部”。</p>
+<ul>
+<li><p><code>sentinel.next</code> 将永远指向<strong>第一个</strong>真实节点。</p>
+</li>
+<li><p><code>sentinel.prev</code> 将永远指向<strong>最后一个</strong>真实节点。</p>
+</li>
+</ul>
+<p>使用哨兵有什么好处？</p>
+<p>它能消除所有烦人的“空指针”边界情况！</p>
+<ul>
+<li><p>你再也不用写 <code>if (head == null)</code> 这样的代码了。</p>
+</li>
+<li><p>一个<strong>空链表</strong>就是一个 <code>sentinel</code> 节点自己指向自己的状态。</p>
+</li>
+<li><p>添加第一个元素或删除最后一个元素，与在链表中间操作的逻辑变得<strong>完全一致</strong>。</p>
+</li>
+</ul>
+<p>DLList 的构造函数 (Constructor)：</p>
+<p>这就是我们初始化空链表的地方。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DLList</span>&lt;T&gt; {</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... Node 内部类在这里 ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. DLList 的实例变量</span></span><br><span class="line">    <span class="keyword">private</span> Node sentinel; <span class="comment">// 哨兵节点</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> size;      <span class="comment">// 缓存链表的大小</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/** * 构造函数：创建一个空的 DLList     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DLList</span><span class="params">()</span> {</span><br><span class="line">        <span class="comment">// 哨兵节点的 item 可以是任意值 (或 null)，因为它不存储真实数据</span></span><br><span class="line">        sentinel = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>); </span><br><span class="line"></span><br><span class="line">        <span class="comment">// --- 这是最关键的一步 ---</span></span><br><span class="line">        <span class="comment">// 在一个空链表中，哨兵的 "下一个" 是它自己</span></span><br><span class="line">        sentinel.next = sentinel;</span><br><span class="line">        <span class="comment">// 哨兵的 "上一个" 也是它自己</span></span><br><span class="line">        sentinel.prev = sentinel;</span><br><span class="line">        <span class="comment">// --- 这样就形成了一个“循环” ---</span></span><br><span class="line"></span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// (为了回答你之前的问题，我们也可以加一个构造函数)</span></span><br><span class="line">    <span class="comment">/** * 构造函数：创建一个带有一个初始元素的 DLList     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">DLList</span><span class="params">(T item)</span> {</span><br><span class="line">        <span class="comment">// 1. 先创建一个空的循环哨兵</span></span><br><span class="line">        sentinel = <span class="keyword">new</span> <span class="title class_">Node</span>(<span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">        sentinel.next = sentinel;</span><br><span class="line">        sentinel.prev = sentinel;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 2. 然后调用 addFirst (或 addLast) 来添加这个元素</span></span><br><span class="line">        addFirst(item); </span><br><span class="line">        <span class="comment">// (size 会在 addFirst 内部被设为 1)</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... 接下来是 add, remove 等方法 ...</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
+<hr>
+<h3 id="3-关键操作：实现-add-和-remove"><a href="#3-关键操作：实现-add-和-remove" class="headerlink" title="3. 关键操作：实现 add 和 remove"></a>3. 关键操作：实现 <code>add</code> 和 <code>remove</code></h3><p>这是双向链表的核心。关键在于<strong>正确地更新所有相关的 <code>prev</code> 和 <code>next</code> 引用</strong>。</p>
+<h4 id="A-addFirst-T-item"><a href="#A-addFirst-T-item" class="headerlink" title="A. addFirst(T item)"></a>A. <code>addFirst(T item)</code></h4><p><strong>目标：</strong> 在 <code>sentinel</code> 和“旧的第一个节点”之间插入一个新节点。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**     * 在链表的最前面添加一个新元素     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addFirst</span><span class="params">(T item)</span> {</span><br><span class="line">    <span class="comment">// 1. 确定新节点的邻居</span></span><br><span class="line">    <span class="type">Node</span> <span class="variable">oldFirst</span> <span class="operator">=</span> sentinel.next; <span class="comment">// 旧的第一个节点</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 创建新节点</span></span><br><span class="line">    <span class="comment">//    - 它的 item 是 item</span></span><br><span class="line">    <span class="comment">//    - 它的 "上一个 (prev)" 是 sentinel</span></span><br><span class="line">    <span class="comment">//    - 它的 "下一个 (next)" 是 oldFirst</span></span><br><span class="line">    <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(item, sentinel, oldFirst);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 更新邻居，让它们指向新节点 (这是最容易出错的地方！)</span></span><br><span class="line">    <span class="comment">//    - 哨兵的 "下一个" 应该指向新节点</span></span><br><span class="line">    sentinel.next = newNode;</span><br><span class="line">    <span class="comment">//    - 旧的第一个节点的 "上一个" 应该指向新节点</span></span><br><span class="line">    oldFirst.prev = newNode;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 别忘了更新 size</span></span><br><span class="line">    size += <span class="number">1</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
+<p><strong>图解 (addFirst)：</strong></p>
+<ul>
+<li><p><strong>之前:</strong> <code>Sentinel &lt;--&gt; OldFirst</code></p>
+</li>
+<li><p><strong>之后:</strong> <code>Sentinel &lt;--&gt; NewNode &lt;--&gt; OldFirst</code></p>
+</li>
+</ul>
+<h4 id="B-addLast-T-item"><a href="#B-addLast-T-item" class="headerlink" title="B. addLast(T item)"></a>B. <code>addLast(T item)</code></h4><p><strong>目标：</strong> 在“旧的最后一个节点”和 <code>sentinel</code> 之间插入一个新节点。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**     * 在链表的最后面添加一个新元素     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(T item)</span> {</span><br><span class="line">    <span class="comment">// 1. 确定新节点的邻居</span></span><br><span class="line">    <span class="type">Node</span> <span class="variable">oldLast</span> <span class="operator">=</span> sentinel.prev; <span class="comment">// 旧的最后一个节点</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 创建新节点</span></span><br><span class="line">    <span class="comment">//    - 它的 item 是 item</span></span><br><span class="line">    <span class="comment">//    - 它的 "上一个 (prev)" 是 oldLast</span></span><br><span class="line">    <span class="comment">//    - 它的 "下一个 (next)" 是 sentinel</span></span><br><span class="line">    <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(item, oldLast, sentinel);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 更新邻居，让它们指向新节点</span></span><br><span class="line">    <span class="comment">//    - 旧的最后一个节点的 "下一个" 应该指向新节点</span></span><br><span class="line">    oldLast.next = newNode;</span><br><span class="line">    <span class="comment">//    - 哨兵的 "上一个" 应该指向新节点</span></span><br><span class="line">    sentinel.prev = newNode;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 别忘了更新 size</span></span><br><span class="line">    size += <span class="number">1</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>图解 (addLast)：</strong></p>
+<ul>
+<li><p><strong>之前:</strong> <code>OldLast &lt;--&gt; Sentinel</code></p>
+</li>
+<li><p><strong>之后:</strong> <code>OldLast &lt;--&gt; NewNode &lt;--&gt; Sentinel</code></p>
+</li>
+</ul>
+<h4 id="C-removeFirst"><a href="#C-removeFirst" class="headerlink" title="C. removeFirst()"></a>C. <code>removeFirst()</code></h4><p><strong>目标：</strong> 移除 <code>sentinel.next</code> 指向的节点，并返回它的 <code>item</code>。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**     * 移除并返回链表的第一个元素     * (如果链表为空，返回 null)     */</span></span><br><span class="line"><span class="keyword">public</span> T <span class="title function_">removeFirst</span><span class="params">()</span> {</span><br><span class="line">    <span class="keyword">if</span> (isEmpty()) {</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 找到要移除的节点 (旧的第一个节点)</span></span><br><span class="line">    <span class="type">Node</span> <span class="variable">nodeToRemove</span> <span class="operator">=</span> sentinel.next;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 找到它的邻居</span></span><br><span class="line">    <span class="type">Node</span> <span class="variable">newFirst</span> <span class="operator">=</span> nodeToRemove.next; <span class="comment">// 这将成为新的第一个节点</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. “跳过” (Bypass) 要移除的节点</span></span><br><span class="line">    <span class="comment">//    - 哨兵的 "下一个" 应该指向 newFirst</span></span><br><span class="line">    sentinel.next = newFirst;</span><br><span class="line">    <span class="comment">//    - newFirst 的 "上一个" 应该指向哨兵</span></span><br><span class="line">    newFirst.prev = sentinel;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 更新 size</span></span><br><span class="line">    size -= <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 返回被移除节点的数据</span></span><br><span class="line">    <span class="keyword">return</span> nodeToRemove.item;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>图解 (removeFirst)：</strong></p>
+<ul>
+<li><p><strong>之前:</strong> <code>Sentinel &lt;--&gt; NodeToRemove &lt;--&gt; NewFirst</code></p>
+</li>
+<li><p><strong>之后:</strong> <code>Sentinel &lt;--&gt; NewFirst</code></p>
+</li>
+</ul>
+<h4 id="D-removeLast"><a href="#D-removeLast" class="headerlink" title="D. removeLast()"></a>D. <code>removeLast()</code></h4><p><strong>目标：</strong> 移除 <code>sentinel.prev</code> 指向的节点，并返回它的 <code>item</code>。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**     * 移除并返回链表的最后一个元素     * (如果链表为空，返回 null)     */</span></span><br><span class="line"><span class="keyword">public</span> T <span class="title function_">removeLast</span><span class="params">()</span> {</span><br><span class="line">    <span class="keyword">if</span> (isEmpty()) {</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 1. 找到要移除的节点 (旧的最后一个节点)</span></span><br><span class="line">    <span class="type">Node</span> <span class="variable">nodeToRemove</span> <span class="operator">=</span> sentinel.prev;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 找到它的邻居</span></span><br><span class="line">    <span class="type">Node</span> <span class="variable">newLast</span> <span class="operator">=</span> nodeToRemove.prev; <span class="comment">// 这将成为新的最后一个节点</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. “跳过” (Bypass) 要移除的节点</span></span><br><span class="line">    <span class="comment">//    - newLast 的 "下一个" 应该指向哨兵</span></span><br><span class="line">    newLast.next = sentinel;</span><br><span class="line">    <span class="comment">//    - 哨兵的 "上一个" 应该指向 newLast</span></span><br><span class="line">    sentinel.prev = newLast;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 4. 更新 size</span></span><br><span class="line">    size -= <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5. 返回被移除节点的数据</span></span><br><span class="line">    <span class="keyword">return</span> nodeToRemove.item;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>图解 (removeLast)：</strong></p>
+<ul>
+<li><p><strong>之前:</strong> <code>NewLast &lt;--&gt; NodeToRemove &lt;--&gt; Sentinel</code></p>
+</li>
+<li><p><strong>之后:</strong> <code>NewLast &lt;--&gt; Sentinel</code></p>
+</li>
+</ul>
+<hr>
+<h3 id="4-辅助方法"><a href="#4-辅助方法" class="headerlink" title="4. 辅助方法"></a>4. 辅助方法</h3><p>最后，你需要一些辅助方法来让你的类更易用。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**     * 返回链表中的元素个数     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.size;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/**     * 检查链表是否为空     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span> {</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.size == <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// (或者你也可以检查: return sentinel.next == sentinel;)</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/**     * (可选) 获取指定索引处的元素     */</span></span><br><span class="line"><span class="keyword">public</span> T <span class="title function_">get</span><span class="params">(<span class="type">int</span> index)</span> {</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= size) {</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>; <span class="comment">// 索引越界</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从第一个真实节点开始 (sentinel.next)</span></span><br><span class="line">    <span class="type">Node</span> <span class="variable">p</span> <span class="operator">=</span> sentinel.next; </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环 "index" 次</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; index; i++) {</span><br><span class="line">        p = p.next;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> p.item;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">/**     * (可选) 打印链表，用于调试     */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">printDeque</span><span class="params">()</span> {</span><br><span class="line">    <span class="type">Node</span> <span class="variable">p</span> <span class="operator">=</span> sentinel.next;</span><br><span class="line">    <span class="keyword">while</span> (p != sentinel) {</span><br><span class="line">        System.out.print(p.item + <span class="string">" "</span>);</span><br><span class="line">        p = p.next;</span><br><span class="line">    }</span><br><span class="line">    System.out.println(); <span class="comment">// 换行</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这就是实现一个带哨兵节点的泛型 <code>DLList</code> 的完整思路和关键代码。</p>
 <hr>
 <h1 id="Generics-泛型"><a href="#Generics-泛型" class="headerlink" title="Generics(泛型)"></a>Generics(泛型)</h1><h2 id="DLList-s1-new-DLList-5-3"><a href="#DLList-s1-new-DLList-5-3" class="headerlink" title="DLList<Double> s1 = new DLList<>(5.3);"></a><strong><code>DLList&lt;Double&gt; s1 = new DLList&lt;&gt;(5.3);</code></strong></h2><p>这里的<code>&lt;&gt;</code>是指java中的核心特性–泛型(Generics)</p>
 <ul>
@@ -226,10 +414,12 @@
 <li><h3 id="为什么需要泛型？"><a href="#为什么需要泛型？" class="headerlink" title="为什么需要泛型？"></a>为什么需要泛型？</h3><p><code>DLList</code> 就像一个<strong>盒子</strong>：</p>
 <ul>
 <li><p><strong>没有尖括号</strong>：<code>DLList s1 = new DLList();</code></p>
-</li>
+<ul>
 <li><p>这是一个<strong>什么都能装</strong>的盒子。你可以往里面放一个 <code>Double</code> (5.3)，一个 <code>String</code> (“hello”)，甚至一个 <code>Dog</code> 对象。</p>
 </li>
 <li><p><strong>问题：</strong> 当你从盒子里取东西时，你只知道它是个 <code>Object</code>（对象），你不知道它<em>具体</em>是什么。你必须<strong>强制转换</strong>它 (<code>Double d = (Double) s1.get(0);</code>)。如果你猜错了（比如你以为是 <code>Double</code>，但取出来的是 “hello”），程序就会在运行时<strong>崩溃</strong>。</p>
+</li>
+</ul>
 </li>
 <li><p><strong>有尖括号 (泛型方法)</strong>：<code>DLList&lt;Double&gt; s1 = ...</code></p>
 <ul>
