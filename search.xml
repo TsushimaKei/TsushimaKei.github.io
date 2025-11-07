@@ -538,17 +538,69 @@
 <hr>
 <h1 id="Inheritance-继承-Overloads-重载"><a href="#Inheritance-继承-Overloads-重载" class="headerlink" title="Inheritance(继承)/Overloads(重载)"></a>Inheritance(继承)/Overloads(重载)</h1><figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Animal</span> {</span><br><span class="line">    <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">greet</span><span class="params">(Animal a)</span> {</span><br><span class="line">        System.out.println(<span class="string">"hello animal"</span>); <span class="comment">//</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">sniff</span><span class="params">(Animal a)</span> {</span><br><span class="line">        System.out.println(<span class="string">"sniff animal"</span>); <span class="comment">//</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">praise</span><span class="params">(Animal a)</span> {</span><br><span class="line">        System.out.println(<span class="string">"u r cool animal"</span>); <span class="comment">//</span></span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> <span class="keyword">implements</span> <span class="title class_">Animal</span> {</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sniff</span><span class="params">(Animal a)</span> {</span><br><span class="line">        System.out.println(<span class="string">"dog sniff animal"</span>); <span class="comment">//</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">praise</span><span class="params">(Dog a)</span> {</span><br><span class="line">        System.out.println(<span class="string">"u r cool dog"</span>); <span class="comment">//</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 声明类型是 Animal, 实际类型是 Dog</span></span><br><span class="line">        <span class="type">Animal</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 声明类型是 Dog, 实际类型是 Dog</span></span><br><span class="line">        <span class="type">Dog</span> <span class="variable">d</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"--- 运行谜题 ---"</span>);</span><br><span class="line"></span><br><span class="line">        System.out.print(<span class="string">"a.greet(d);   --&gt; "</span>);</span><br><span class="line">        a.greet(d); <span class="comment">// 调用继承的 greet(Animal a)</span></span><br><span class="line"></span><br><span class="line">        System.out.print(<span class="string">"a.sniff(d);   --&gt; "</span>);</span><br><span class="line">        a.sniff(d); <span class="comment">// 动态选择：调用 Dog 重写的 sniff(Animal a)</span></span><br><span class="line"></span><br><span class="line">        System.out.print(<span class="string">"d.praise(d);  --&gt; "</span>);</span><br><span class="line">        d.praise(d); <span class="comment">// 静态选择：调用 Dog 重载的 praise(Dog a)</span></span><br><span class="line"></span><br><span class="line">        System.out.print(<span class="string">"a.praise(d);  --&gt; "</span>);</span><br><span class="line">        a.praise(d); <span class="comment">// 静态选择：调用 Animal 接口的 praise(Animal a)</span></span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 
-
-
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="Interface-Inheritance-接口继承"><a href="#Interface-Inheritance-接口继承" class="headerlink" title="Interface Inheritance(接口继承)"></a>Interface Inheritance(接口继承)</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;接口继承指的是一个子类继承超类的所有方法/行为的关系。</p>
+<h2 id="Implementation-Inheritance-实现继承"><a href="#Implementation-Inheritance-实现继承" class="headerlink" title="Implementation Inheritance(实现继承)"></a>Implementation Inheritance(实现继承)</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;理解<strong>实现继承</strong>的时候应该理解成<strong>是一个（is - a</strong>) 而不是<strong>有一个(has - a)</strong></p>
+<ul>
+<li><h3 id="IS-A-是一个-继承-Inheritance"><a href="#IS-A-是一个-继承-Inheritance" class="headerlink" title="IS-A (是一个) => 继承 (Inheritance)"></a>IS-A (是一个) =&gt; 继承 (Inheritance)</h3><ul>
+<li><p><strong>子类</strong> <em>是</em> 父类的一种更具体的类型。</p>
+</li>
+<li><p><strong>示例：</strong></p>
+<ul>
+<li><p>在 <code>public class Dog implements Animal</code> 的例子中，<code>Dog</code> <strong>是一个</strong> (<code>IS-A</code>) <code>Animal</code>。</p>
+</li>
+<li><p>正因为如此，你可以写 <code>Animal a = new Dog();</code>，因为 <code>Dog</code> 满足 <code>Animal</code> 接口所定义的所有规范（它“是”一个 <code>Animal</code>）。</p>
+</li>
+<li><p>一个 <code>ArrayList</code> <strong>是一个</strong> (<code>IS-A</code>) <code>List</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>实现继承 (extends)</strong></th>
+<th><strong>接口继承 (implements)</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>关键字</strong></td>
+<td><code>extends</code></td>
+<td><code>implements</code></td>
+</tr>
+<tr>
+<td><strong>继承内容</strong></td>
+<td><strong>代码实现</strong> 和 <strong>数据字段</strong></td>
+<td><strong>方法规范</strong> (API 签名)</td>
+</tr>
+<tr>
+<td><strong>关系</strong></td>
+<td>“IS-A” (是一个)</td>
+<td>“Can-Do” (能做)</td>
+</tr>
+<tr>
+<td><strong>目的</strong></td>
+<td>代码复用、特化</td>
+<td>定义规范、多态</td>
+</tr>
+<tr>
+<td><strong>多重继承</strong></td>
+<td>不允许 (只能继承一个类)</td>
+<td><strong>允许</strong> (可以实现多个接口)</td>
+</tr>
+</tbody></table>
 <hr>
-<h1 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h1><p>今天又回顾了一遍<code>DLList</code> 其实也没那么难嘛，发现有时候就是会被一些畏惧的情绪堵住导致学不进去</p>
-<p>看了两节课，<code>AList</code>的实现比<code>DLList</code>好理解多了，链表初次看真让人望而生畏</p>
-<p>方法重载和继承还是很绕了，我在61a时就被继承击垮过好几次，现在看也不难，但就是不想动脑去推这个逻辑。。。</p>
+<h1 id="今日总结"><a href="#今日总结" class="headerlink" title="今日总结"></a>今日总结</h1><p>今天回顾了一遍<code>DLList</code> 其实也没那么难嘛，发现有时候就是会被一些畏惧的情绪堵住导致学不进去</p>
+<p>看了两节课，感觉不能完全消化(<del>有点像方便面吃一包不够两包太撑</del>)</p>
+<p>说实话<code>AList</code>的实现比<code>DLList</code>好理解多了（<del>不变量我爱你</del>）</p>
+<p>方法重载和继承还是很绕，我在61a时就被继承击垮过好几次，现在看也不难，但就是不想动脑去推这个逻辑。。。</p>
 <blockquote>
 <p><del>看来我真是天生的懒狗</del></p>
 </blockquote>
 <hr>
-<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><p>好好把作业做了，对今天学的知识点做个回顾</p>
+<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><p>好好把作业做了</p>
 <p>读读project1的文档，试着写一写项目文档</p>
 ]]></content>
       <tags>
