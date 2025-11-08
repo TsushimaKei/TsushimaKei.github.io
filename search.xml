@@ -755,6 +755,31 @@
 </tr>
 </tbody></table>
 <hr>
+<h1 id="Lab3"><a href="#Lab3" class="headerlink" title="Lab3"></a>Lab3</h1><p>学不进去了，就只写了第一部分</p>
+<figure class="highlight java"><table><tbody><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">timeAListConstruction</span><span class="params">()</span> {</span><br><span class="line">        </span><br><span class="line">        AList&lt;Integer&gt; Ns = <span class="keyword">new</span> <span class="title class_">AList</span>&lt;&gt;();</span><br><span class="line">        AList&lt;Double&gt; times = <span class="keyword">new</span> <span class="title class_">AList</span>&lt;&gt;();</span><br><span class="line">        AList&lt;Integer&gt; opCounts = <span class="keyword">new</span> <span class="title class_">AList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">        <span class="type">int</span>[] N_values = {<span class="number">1000</span>, <span class="number">2000</span>, <span class="number">4000</span>, <span class="number">8000</span>, <span class="number">16000</span>, <span class="number">32000</span>, <span class="number">64000</span>, <span class="number">128000</span>};</span><br><span class="line">       </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> N : N_values) {</span><br><span class="line">            </span><br><span class="line">            AList&lt;Integer&gt; listToTime = <span class="keyword">new</span> <span class="title class_">AList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">            <span class="type">Stopwatch</span> <span class="variable">sw</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Stopwatch</span>(); <span class="comment">//启动秒表</span></span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; N; i++) {</span><br><span class="line">                listToTime.addLast(i);</span><br><span class="line">            }</span><br><span class="line">            </span><br><span class="line">            <span class="type">double</span> <span class="variable">timeInSeconds</span> <span class="operator">=</span> sw.elapsedTime(); <span class="comment">//  获取总耗时</span></span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">            Ns.addLast(N);</span><br><span class="line">            times.addLast(timeInSeconds);</span><br><span class="line">            opCounts.addLast(N); </span><br><span class="line">        }</span><br><span class="line">        printTimingTable(Ns, times, opCounts); </span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
+
+<p><code>TimeSLList</code>和这个差不多，就不重复了</p>
+<hr>
+<h1 id="今日总结-发发牢骚"><a href="#今日总结-发发牢骚" class="headerlink" title="今日总结(发发牢骚)"></a>今日总结(<del>发发牢骚</del>)</h1><ul>
+<li><p>好烦好烦，看不进去代码</p>
+</li>
+<li><p>我的学习效率有够低，看了很久的题目就是一点脑子没动，这些题目都好难理解</p>
+</li>
+<li><p>不知道该咋办了，我是不是该休息了，但是任务好多。。。</p>
+</li>
+<li><p>现在来看61b想两个月收掉几乎是不可能的是，<del>（除非我能连续旷两个月课）</del></p>
+</li>
+<li><p>真不知道他们那些人是怎么做到的。。。也许是我太菜了吧</p>
+</li>
+</ul>
+<hr>
+<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><ul>
+<li><p>把week3收个尾和lab3剩余部分做了</p>
+</li>
+<li><p>决定是休息还是继续学</p>
+<p>就酱</p>
+</li>
+</ul>
 ]]></content>
       <tags>
         <tag>CS61B</tag>
