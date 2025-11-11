@@ -19,27 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"tsushimakei.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="java是一个静态类型的语言，不具备有损的隐式转换的功能，定义为int类型时无法赋予5.3这样的值（c语言中则是可以赋值但是会导致精度丢失，也就是“隐式转换”）    特性 C 语言 Java 语言    int i &#x3D; 3.14; 允许（编译通过） 不允许（编译错误）   转换方式 隐式转换（Implicit） 必须显式转换（Explicit Cast）   结果 自动截断小数，i 变为 3 必">
+    <meta name="description" content="近日总结这两天没写博客，主要是在休息和忘了，想着稳定下精神状态 可惜不是很顺利，可恶的是这两天感染上感冒了，但继续休息怕之后又找不到状态，遂强制开机 我的进度确实是有点慢了，最近q群看到比我早学三四天的大佬现在已经学到week7了，我还在week4打转(压力好大) 说实话这几天就是没怎么学，学了学调试和找ai补充了点知识盲区(主要是java的一些语法和特性，我懒得写这些不太好写)  明日期望我发现">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS61B--Day01">
-<meta property="og:url" content="https://tsushimakei.github.io/2025/11/01/CS61B-Day01/index.html">
+<meta property="og:title" content="CS61B--Day09~11">
+<meta property="og:url" content="https://tsushimakei.github.io/2025/11/11/CS61B-Day09~11/index.html">
 <meta property="og:site_name" content="对马馨的Blog">
-<meta property="og:description" content="java是一个静态类型的语言，不具备有损的隐式转换的功能，定义为int类型时无法赋予5.3这样的值（c语言中则是可以赋值但是会导致精度丢失，也就是“隐式转换”）    特性 C 语言 Java 语言    int i &#x3D; 3.14; 允许（编译通过） 不允许（编译错误）   转换方式 隐式转换（Implicit） 必须显式转换（Explicit Cast）   结果 自动截断小数，i 变为 3 必">
+<meta property="og:description" content="近日总结这两天没写博客，主要是在休息和忘了，想着稳定下精神状态 可惜不是很顺利，可恶的是这两天感染上感冒了，但继续休息怕之后又找不到状态，遂强制开机 我的进度确实是有点慢了，最近q群看到比我早学三四天的大佬现在已经学到week7了，我还在week4打转(压力好大) 说实话这几天就是没怎么学，学了学调试和找ai补充了点知识盲区(主要是java的一些语法和特性，我懒得写这些不太好写)  明日期望我发现">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-11-01T10:59:58.000Z">
-<meta property="article:modified_time" content="2025-11-01T11:31:31.477Z">
+<meta property="article:published_time" content="2025-11-11T11:49:42.000Z">
+<meta property="article:modified_time" content="2025-11-11T10:29:33.543Z">
 <meta property="article:author" content="TsushimaKei">
 <meta property="article:tag" content="CS61B">
+<meta property="article:tag" content="划水">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://tsushimakei.github.io/2025/11/01/CS61B-Day01/">
+<link rel="canonical" href="https://tsushimakei.github.io/2025/11/11/CS61B-Day09~11/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tsushimakei.github.io/2025/11/01/CS61B-Day01/","path":"2025/11/01/CS61B-Day01/","title":"CS61B--Day01"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tsushimakei.github.io/2025/11/11/CS61B-Day09~11/","path":"2025/11/11/CS61B-Day09~11/","title":"CS61B--Day09~11"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>CS61B--Day01 | 对马馨的Blog</title>
+<title>CS61B--Day09~11 | 对马馨的Blog</title>
   
 
 
@@ -117,7 +118,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -130,6 +131,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%91%E6%97%A5%E6%80%BB%E7%BB%93"><span class="nav-number">1.</span> <span class="nav-text">近日总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%8E%E6%97%A5%E6%9C%9F%E6%9C%9B"><span class="nav-number">2.</span> <span class="nav-text">明日期望</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -174,7 +176,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://tsushimakei.github.io/2025/11/01/CS61B-Day01/">
+    <link itemprop="mainEntityOfPage" href="https://tsushimakei.github.io/2025/11/11/CS61B-Day09~11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -187,12 +189,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="CS61B--Day01 | 对马馨的Blog">
+      <meta itemprop="name" content="CS61B--Day09~11 | 对马馨的Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          CS61B--Day01
+          CS61B--Day09~11
         </h1>
 
         <div class="post-meta-container">
@@ -204,7 +206,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-11-01 18:59:58 / 修改时间：19:31:31" itemprop="dateCreated datePublished" datetime="2025-11-01T18:59:58+08:00">2025-11-01</time>
+      <time title="创建时间：2025-11-11 19:49:42 / 修改时间：18:29:33" itemprop="dateCreated datePublished" datetime="2025-11-11T19:49:42+08:00">2025-11-11</time>
     </span>
 
   
@@ -216,68 +218,12 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>java是一个静态类型的语言，不具备有损的隐式转换的功能，定义为int类型时无法赋予5.3这样的值（c语言中则是可以赋值但是会导致精度丢失，也就是“隐式转换”）</p>
-<table>
-<thead>
-<tr>
-<th><strong>特性</strong></th>
-<th><strong>C 语言</strong></th>
-<th><strong>Java 语言</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><code>int i = 3.14;</code></strong></td>
-<td><strong>允许</strong>（编译通过）</td>
-<td><strong>不允许</strong>（编译错误）</td>
-</tr>
-<tr>
-<td><strong>转换方式</strong></td>
-<td><strong>隐式转换</strong>（Implicit）</td>
-<td><strong>必须显式转换</strong>（Explicit Cast）</td>
-</tr>
-<tr>
-<td><strong>结果</strong></td>
-<td>自动<strong>截断</strong>小数，<code>i</code> 变为 <code>3</code></td>
-<td>必须写成 <code>int i = (int)3.14;</code>，<code>i</code> 才会变为 <code>3</code></td>
-</tr>
-<tr>
-<td><strong>设计哲学</strong></td>
-<td>灵活，相信程序员</td>
-<td>严格，强调类型安全，防止意外的数据丢失</td>
-</tr>
-</tbody></table>
+    <div class="post-body" itemprop="articleBody"><h1 id="近日总结"><a href="#近日总结" class="headerlink" title="近日总结"></a>近日总结</h1><p>这两天没写博客，主要是在休息和忘了，想着稳定下精神状态</p>
+<p>可惜不是很顺利，可恶的是这两天感染上感冒了，但继续休息怕之后又找不到状态，遂强制开机</p>
+<p>我的进度确实是有点慢了，最近q群看到比我早学三四天的大佬现在已经学到week7了，我还在week4打转(压力好大)</p>
+<p>说实话这几天就是没怎么学，学了学调试和找ai补充了点知识盲区(主要是java的一些语法和特性，<del>我懒得写</del>这些不太好写)</p>
 <hr>
-<ul>
-<li><p>java一般一个(.java)文件只包含一个类，所有代码都包含在类中，同一个文件夹下可以进行相互调用</p>
-</li>
-<li><p>java想要运行一个类需要一个主方法（main）</p>
-</li>
-</ul>
-<hr>
-<p>以下这种是无法运行的</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个类只是一个“工具类”或“数据模型”</span></span><br><span class="line"><span class="comment">// 它没有 main 方法，所以它自己不能被运行</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">makeNoise</span><span class="params">()</span> {</span><br><span class="line">        System.out.println(<span class="string">"Bark"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>所以得这样</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DogLauncher</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line"> <span class="comment">// 您的代码从这里开始运行</span></span><br><span class="line">        Dog.makeNoise();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<blockquote>
-<p>一个使用另一个类的类有时被称为该类的“客户端”，即 <code>DogLauncher</code> 是 <code>Dog</code> 的客户端。</p>
-</blockquote>
-<ul>
-<li><p>不能从静态(static)内容访问实例属性</p>
-</li>
-<li><p>与c语言不同，c语言中所有东西都有一个值，java中可能存在一种没有值的东西，不是null，就是什么都没有</p>
-</li>
-</ul>
-<hr>
-<p><strong>方法重载</strong></p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> weightInPounds;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">()</span>{</span><br><span class="line">        weightInPounds = <span class="number">95</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(<span class="type">int</span> w)</span>{</span><br><span class="line">        weightInPounds = w;   </span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p><strong>为什么存在两个<code>public Dog</code>?</strong></p>
-<blockquote>
-<p>因为这两个构造方法的参数列表不同（一个是 0 个参数，一个是 1 个 int 参数），所以 Java 编译器可以毫不费力地将它们区分开。</p>
-</blockquote>
-<hr>
+<h1 id="明日期望"><a href="#明日期望" class="headerlink" title="明日期望"></a>明日期望</h1><p>我发现这个明日期望没啥用，我总是临时改变计划，以后就不写了</p>
 
     </div>
 
@@ -288,17 +234,18 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/CS61B/" rel="tag"># CS61B</a>
+              <a href="/tags/%E5%88%92%E6%B0%B4/" rel="tag"># 划水</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2025/11/08/CS61B-Day08/" rel="prev" title="CS61B--Day08">
+                  <i class="fa fa-angle-left"></i> CS61B--Day08
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/11/02/CS61B-Day02/" rel="next" title="CS61B--Day02">
-                  CS61B--Day02 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
