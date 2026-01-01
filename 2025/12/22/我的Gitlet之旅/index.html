@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tsushimakei.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="init 初始化一个目录，即添加一个.gitlet目录   创建子目录 (objects, refs)  生成Initial Commit对象  创建 master 指针指向该 Commit  新建一个暂存区，这里我创建了一个辅助类StagingArea.java,后面会贴出来   add 将文件添加到暂存区 add&nbsp;命令并不只是将文件名放入列表。它必须读取文件内容，计算哈希，并在暂存区">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的Gitlet之旅">
+<meta property="og:url" content="https://tsushimakei.github.io/2025/12/22/%E6%88%91%E7%9A%84Gitlet%E4%B9%8B%E6%97%85/index.html">
+<meta property="og:site_name" content="对马馨的Blog">
+<meta property="og:description" content="init 初始化一个目录，即添加一个.gitlet目录   创建子目录 (objects, refs)  生成Initial Commit对象  创建 master 指针指向该 Commit  新建一个暂存区，这里我创建了一个辅助类StagingArea.java,后面会贴出来   add 将文件添加到暂存区 add&nbsp;命令并不只是将文件名放入列表。它必须读取文件内容，计算哈希，并在暂存区">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-12-22T14:25:27.000Z">
+<meta property="article:modified_time" content="2025-12-23T02:27:38.345Z">
+<meta property="article:author" content="TsushimaKei">
+<meta property="article:tag" content="数据结构与算法 - Gitlet">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://tsushimakei.github.io/2025/12/22/%E6%88%91%E7%9A%84Gitlet%E4%B9%8B%E6%97%85/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://tsushimakei.github.io/2025/12/22/%E6%88%91%E7%9A%84Gitlet%E4%B9%8B%E6%97%85/","path":"2025/12/22/我的Gitlet之旅/","title":"我的Gitlet之旅"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>我的Gitlet之旅 | 对马馨的Blog</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">对马馨的Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-folder-open fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#init"><span class="nav-number">1.</span> <span class="nav-text">init</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#add"><span class="nav-number">2.</span> <span class="nav-text">add</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#commit"><span class="nav-number">3.</span> <span class="nav-text">commit</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rm"><span class="nav-number">4.</span> <span class="nav-text">rm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#log"><span class="nav-number">5.</span> <span class="nav-text">log</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#global-log"><span class="nav-number">6.</span> <span class="nav-text">global-log</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#find"><span class="nav-number">7.</span> <span class="nav-text">find</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#status"><span class="nav-number">8.</span> <span class="nav-text">status</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#checkout"><span class="nav-number">9.</span> <span class="nav-text">checkout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#checkout-%E7%9A%84%E4%B8%89%E7%A7%8D%E7%94%A8%E6%B3%95%EF%BC%9A"><span class="nav-number">9.1.</span> <span class="nav-text">checkout 的三种用法：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#branch"><span class="nav-number">10.</span> <span class="nav-text">branch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rm-branch"><span class="nav-number">11.</span> <span class="nav-text">rm-branch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reset"><span class="nav-number">12.</span> <span class="nav-text">reset</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#merge"><span class="nav-number">13.</span> <span class="nav-text">merge</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%88%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%89"><span class="nav-number">14.</span> <span class="nav-text">总结（碎碎念）</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">TsushimaKei</p>
+  <div class="site-description" itemprop="description">不要比较</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://tsushimakei.github.io/2025/12/22/%E6%88%91%E7%9A%84Gitlet%E4%B9%8B%E6%97%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="TsushimaKei">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="对马馨的Blog">
+      <meta itemprop="description" content="不要比较">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="我的Gitlet之旅 | 对马馨的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我的Gitlet之旅
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-12-22 22:25:27" itemprop="dateCreated datePublished" datetime="2025-12-22T22:25:27+08:00">2025-12-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-23 10:27:38" itemprop="dateModified" datetime="2025-12-23T10:27:38+08:00">2025-12-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="init"><a href="#init" class="headerlink" title="init"></a>init</h1><blockquote>
+<p>初始化一个目录，即添加一个<code>.gitlet</code>目录</p>
+</blockquote>
+<ol>
+<li><p>创建子目录 (objects, refs)</p>
+</li>
+<li><p>生成<strong>Initial Commit</strong>对象</p>
+</li>
+<li><p>创建 master 指针指向该 Commit</p>
+</li>
+<li><p>新建一个暂存区，这里我创建了一个辅助类<code>StagingArea.java</code>,后面会贴出来</p>
+</li>
+</ol>
+<h1 id="add"><a href="#add" class="headerlink" title="add"></a>add</h1><blockquote>
+<p>将文件添加到暂存区</p>
+<p><code>add</code>&nbsp;命令并不只是将文件名放入列表。它必须读取文件内容，计算哈希，并在暂存区中更新映射</p>
+</blockquote>
+<ol>
+<li><p>暂存区应该在<code>.gitlet</code>中的某个位置</p>
+<ul>
+<li>获取HEAD指向的id</li>
+</ul>
+</li>
+<li><p>如果文件没变，使用<code>add</code>无效</p>
+</li>
+<li><p>如果工作区的内容与commit里的内容相同，则删除暂存区内容</p>
+</li>
+<li><p>记得持久化</p>
+</li>
+</ol>
+<h1 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h1><blockquote>
+<p>保存已经存储了的文件的快照，<strong>commit 对象本身不存文件内容</strong>（只存 blob 引用/哈希）。</p>
+<p>将暂存区的文件提交到commit里</p>
+<p>快照跟踪的是文件名及其对应的哈希值</p>
+<p>所以commit的作用没有把内容硬存盘这一步，而是提供对add中文件的快照</p>
+</blockquote>
+<ol>
+<li><p>每个提交应包含其生成的日期和时间。</p>
+</li>
+<li><p>每个提交都有一个与之关联的日志消息</p>
+</li>
+<li><p>刚刚进行的commit成为“当前提交”，head 指针现在指向它。之前head指向的commit是此commit的父提交。</p>
+</li>
+<li><p>每个提交都由其 SHA-1 id 标识，该 id 必须包括其文件的文件（blob）引用、父引用、日志消息和提交时间。</p>
+</li>
+<li><p>commit后暂存区内容被清空</p>
+</li>
+<li><p>commit命令从不添加、更改或删除工作目录中的文件（除了&nbsp;<code>.gitlet</code>&nbsp;目录中的那些）</p>
+</li>
+<li><p>被跟踪的文件从工作目录中丢失或在工作目录中被更改&nbsp;<em>不</em>&nbsp;算是失败。只需完全忽略&nbsp;<code>.gitlet</code>&nbsp;目录之外的所有内容。</p>
+</li>
+</ol>
+<h1 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h1><blockquote>
+<p>删除暂存区或硬盘中(工作目录)的文件，但是无法删除commit里的记录</p>
+</blockquote>
+<ol>
+<li><p>如果文件既未暂存也未被 head 提交跟踪，打印错误消息&nbsp;<code>No reason to remove the file.</code></p>
+</li>
+<li><p>如果当前文件在暂存区，则将他从暂存区移除</p>
+</li>
+<li><p>如果文件已被commit跟踪，则将他的放入“待删除暂存区”，并将目录文件删除</p>
+</li>
+<li><p>已被commit跟踪，但是文件已经不存在于文件目录</p>
+</li>
+</ol>
+<h1 id="log"><a href="#log" class="headerlink" title="log"></a>log</h1><blockquote>
+<p>从当前 head 提交开始，沿着提交树向后显示每个提交的信息</p>
+</blockquote>
+<ul>
+<li><p><code>HEAD</code> → 找到当前分支文件</p>
+</li>
+<li><p>分支文件 → 得到 head commitId</p>
+</li>
+<li><p>去 <code>objects/&lt;commitId&gt;</code> 读出 commit</p>
+</li>
+<li><p>打印它，然后用 <code>commit.parent</code> 更新 commitId</p>
+</li>
+<li><p>重复直到 parent = null</p>
+</li>
+<li><p>所以 <code>log</code> 本质是：<strong>从一个入口 commit 出发，沿 parent 链遍历并打印</strong></p>
+</li>
+</ul>
+<h1 id="global-log"><a href="#global-log" class="headerlink" title="global-log"></a>global-log</h1><blockquote>
+<p>类似于 log，除了显示所有曾经进行的提交的信息。提交的顺序无关紧要。</p>
+<p><strong>把对象库里所有 commit 都打印一遍</strong>（顺序无所谓）</p>
+</blockquote>
+<ul>
+<li><p>扫描 <code>objects/</code> 下所有文件名（id）</p>
+</li>
+<li><p>过滤出“哪些是 commit”（因为里面还有 blob）</p>
+</li>
+<li><p>对每个 commit 打印同样的格式</p>
+</li>
+<li><p><strong>扫数据库</strong>（也就是我们的objects）</p>
+</li>
+</ul>
+<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><blockquote>
+<p>打印出所有具有给定提交消息的提交 id，每行一个。如果有多个这样的提交，它会将 id 打印在单独的行上。</p>
+</blockquote>
+<p><code>find</code> 和 <code>global-log</code> 的结构几乎一模一样：</p>
+<ul>
+<li><p>都是扫 <code>objects</code></p>
+</li>
+<li><p>都要过滤 commit</p>
+</li>
+<li><p>差别只是：</p>
+<ul>
+<li><p><code>global-log</code>：全部打印</p>
+</li>
+<li><p><code>find</code>：只打印 message 完全匹配的 commitId；没有则报错</p>
+</li>
+</ul>
+</li>
+<li><p><strong>数据库查询</strong>（WHERE message = ?）</p>
+</li>
+</ul>
+<h1 id="status"><a href="#status" class="headerlink" title="status"></a>status</h1><blockquote>
+<p>显示当前存在哪些分支，并用&nbsp;<code>*</code>&nbsp;标记当前分支。还显示哪些文件已暂存以进行添加或移除。</p>
+<p>它几乎不关心历史链长啥样，它关心的是<strong>现在工作区和暂存区的状态</strong></p>
+</blockquote>
+<ul>
+<li><p><code>refs/heads</code> + <code>HEAD</code>：列分支、标当前分支</p>
+</li>
+<li><p><code>index</code>：列 staged 和 removed</p>
+</li>
+<li><p><strong>工作区 CWD</strong> + <strong>HEAD commit 的快照（commit.map）</strong> + <strong>index</strong>：对比出</p>
+<ul>
+<li><p>未暂存的修改（modified not staged）</p>
+</li>
+<li><p>未跟踪文件（untracked）</p>
+</li>
+</ul>
+</li>
+<li><p><strong>工作台对比</strong>（CWD vs HEAD vs INDEX）</p>
+</li>
+</ul>
+<h1 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h1><blockquote>
+<p>Checkout 是一种通用命令，根据其参数的不同可以做几件不同的事情。</p>
+</blockquote>
+<h3 id="checkout-的三种用法："><a href="#checkout-的三种用法：" class="headerlink" title="checkout 的三种用法："></a>checkout 的三种用法：</h3><ul>
+<li><p><code>checkout -- file</code>：commit 来源 = 当前 HEAD commit</p>
+</li>
+<li><p><code>checkout commitId -- file</code>：commit 来源 = 指定的 commit</p>
+</li>
+<li><p><code>checkout branch</code>：commit 来源 = 目标分支的 head commit（并且还要移动 HEAD 指向新分支）</p>
+</li>
+</ul>
+<h1 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h1><blockquote>
+<p>创建一个具有给定名称的新分支，并将其指向当前 head 提交。</p>
+</blockquote>
+<ul>
+<li><p>不会产生新 commit</p>
+</li>
+<li><p>不会改工作目录文件</p>
+</li>
+<li><p>只是多了一个名字 → commitId 的映射</p>
+</li>
+<li><p>如果同名分支已经存在：打印 <code>A branch with that name already exists.</code></p>
+</li>
+</ul>
+<h1 id="rm-branch"><a href="#rm-branch" class="headerlink" title="rm-branch"></a>rm-branch</h1><blockquote>
+<p>删除具有给定名称的分支。这仅仅意味着删除与分支关联的指针；这并不意味着删除在该分支下创建的所有提交，或类似的东西。</p>
+</blockquote>
+<ul>
+<li><p>分支不存在：<code>A branch with that name does not exist.</code></p>
+</li>
+<li><p>试图删除当前分支：<code>Cannot remove the current branch.</code></p>
+</li>
+<li><p><strong>commit 节点是不可变的</strong>，你只能加新节点，不能改旧节点；删分支只是“忘记一个入口”，不等于抹掉历史本体。</p>
+</li>
+</ul>
+<h1 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h1><blockquote>
+<p>检出由给定提交跟踪的所有文件。删除该提交中不存在的被跟踪文件。还将当前分支的 head 移动到该提交节点。</p>
+<p>任何会覆盖/删除工作区文件的命令（checkout 分支 / reset / merge）都必须先做 untracked 覆盖检查。</p>
+</blockquote>
+<ul>
+<li><p><strong>把给定 commit 所跟踪的所有文件</strong>检出到工作目录</p>
+</li>
+<li><p><strong>删除</strong>当前被跟踪但在目标 commit 快照里不存在的文件（即“目标快照没有的跟踪文件要移除”）</p>
+</li>
+<li><p><strong>把当前分支的 head 指针移动到那个 commit 节点</strong></p>
+</li>
+<li><p><strong>清空暂存区</strong> 并且它几乎就是“对任意 commit 做一次 checkout，同时还改变当前分支头”。</p>
+</li>
+<li><p>commit id 可以像 checkout 一样用<strong>缩写前缀</strong>。</p>
+</li>
+<li><p>如果 commit 不存在：<code>No commit with that id exists.</code></p>
+</li>
+<li><p>如果当前分支里有某个工作文件是 untracked，并且 reset 会覆盖它：打印 <code>There is an untracked file in the way; delete it, or add and commit it first.</code> 而且要求 <strong>在做任何事之前就检查并退出</strong>。</p>
+</li>
+</ul>
+<h1 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h1><blockquote>
+<p>将给定分支的文件合并到当前分支中。</p>
+<p>把两条历史线“重新接线”，生成一个双亲提交（而且可能冲突）</p>
+</blockquote>
+<ul>
+<li><p><strong>given 改了、current 没改</strong>：用 given 版本覆盖，并且自动 stage。</p>
+</li>
+<li><p><strong>current 改了、given 没改</strong>：保持 current 不动。</p>
+</li>
+<li><p><strong>两边都没改</strong>：保持不动。</p>
+</li>
+<li><p><strong>某文件只存在于 current（不在 split，也不在 given）</strong>：保持不动。</p>
+</li>
+<li><p><strong>某文件只存在于 given（不在 split，也不在 current）</strong>：检出 given 并 stage。</p>
+</li>
+<li><p><strong>split 有、current 没改、given 删除了</strong>：删掉（并变成 untracked/移除），相当于“接受 given 的删除”。</p>
+</li>
+<li><p><strong>split 有、given 没改、current 删除了</strong>：保持 absent。</p>
+</li>
+<li><p><strong>两边“改动方式不同”</strong>：冲突（包括内容不同、或一边改一边删、或 split 不存在但两边新建且内容不同）。</p>
+<p>merge 的失败条件很多，而且顺序很要命（因为很多检查要求“在做任何事之前”就退出）：</p>
+<ul>
+<li><p>暂存区里有 staged additions 或 removals：<code>You have uncommitted changes.</code></p>
+</li>
+<li><p>given 分支不存在：<code>A branch with that name does not exist.</code></p>
+</li>
+<li><p>merge 自己：<code>Cannot merge a branch with itself.</code></p>
+</li>
+<li><p>如果当前 commit 中存在 untracked 文件，并且 merge 会覆盖或删除它： <code>There is an untracked file in the way; delete it, or add and commit it first.</code> 并且要求 <strong>在做任何事之前就检查</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="总结（碎碎念）"><a href="#总结（碎碎念）" class="headerlink" title="总结（碎碎念）"></a>总结（碎碎念）</h1><p>最开始想贴代码的，然后发现一贴一大串挺丑的，每行代码都进行对应的解释效果可能会好点，适合自己回顾也能达到给没写过gitlet的人讲解的目的，但是马上期末周了，我学校的东西一点没学，我得赶一赶学校的考试（唉，每次都是这样……</p>
+<p>关于项目本身，gitlet是我迄今为止遇到过最难的一个项目，也是我中途放弃了很多次的一个项目（<del>无数次的直面恐惧，无数次的被击碎，爽</del>）</p>
+<p>同时也是一个让我燃起了些许自信的项目</p>
+<p>之后我想写一篇年终总结（也可以说是下半年的总结），记录一下我下半年都做了什么（拷打一下自己）</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95-Gitlet/" rel="tag"># 数据结构与算法 - Gitlet</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/11/17/CS61B-Day12-%E8%87%B3%E4%BB%8A/" rel="prev" title="CS61B--Day12~至今">
+                  <i class="fa fa-angle-left"></i> CS61B--Day12~至今
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">TsushimaKei</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

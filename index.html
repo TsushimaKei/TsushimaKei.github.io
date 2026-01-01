@@ -139,12 +139,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -161,6 +161,310 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://tsushimakei.github.io/2025/12/22/%E6%88%91%E7%9A%84Gitlet%E4%B9%8B%E6%97%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="TsushimaKei">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="对马馨的Blog">
+      <meta itemprop="description" content="不要比较">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 对马馨的Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/12/22/%E6%88%91%E7%9A%84Gitlet%E4%B9%8B%E6%97%85/" class="post-title-link" itemprop="url">我的Gitlet之旅</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-12-22 22:25:27" itemprop="dateCreated datePublished" datetime="2025-12-22T22:25:27+08:00">2025-12-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-12-23 10:27:38" itemprop="dateModified" datetime="2025-12-23T10:27:38+08:00">2025-12-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="init"><a href="#init" class="headerlink" title="init"></a>init</h1><blockquote>
+<p>初始化一个目录，即添加一个<code>.gitlet</code>目录</p>
+</blockquote>
+<ol>
+<li><p>创建子目录 (objects, refs)</p>
+</li>
+<li><p>生成<strong>Initial Commit</strong>对象</p>
+</li>
+<li><p>创建 master 指针指向该 Commit</p>
+</li>
+<li><p>新建一个暂存区，这里我创建了一个辅助类<code>StagingArea.java</code>,后面会贴出来</p>
+</li>
+</ol>
+<h1 id="add"><a href="#add" class="headerlink" title="add"></a>add</h1><blockquote>
+<p>将文件添加到暂存区</p>
+<p><code>add</code>&nbsp;命令并不只是将文件名放入列表。它必须读取文件内容，计算哈希，并在暂存区中更新映射</p>
+</blockquote>
+<ol>
+<li><p>暂存区应该在<code>.gitlet</code>中的某个位置</p>
+<ul>
+<li>获取HEAD指向的id</li>
+</ul>
+</li>
+<li><p>如果文件没变，使用<code>add</code>无效</p>
+</li>
+<li><p>如果工作区的内容与commit里的内容相同，则删除暂存区内容</p>
+</li>
+<li><p>记得持久化</p>
+</li>
+</ol>
+<h1 id="commit"><a href="#commit" class="headerlink" title="commit"></a>commit</h1><blockquote>
+<p>保存已经存储了的文件的快照，<strong>commit 对象本身不存文件内容</strong>（只存 blob 引用/哈希）。</p>
+<p>将暂存区的文件提交到commit里</p>
+<p>快照跟踪的是文件名及其对应的哈希值</p>
+<p>所以commit的作用没有把内容硬存盘这一步，而是提供对add中文件的快照</p>
+</blockquote>
+<ol>
+<li><p>每个提交应包含其生成的日期和时间。</p>
+</li>
+<li><p>每个提交都有一个与之关联的日志消息</p>
+</li>
+<li><p>刚刚进行的commit成为“当前提交”，head 指针现在指向它。之前head指向的commit是此commit的父提交。</p>
+</li>
+<li><p>每个提交都由其 SHA-1 id 标识，该 id 必须包括其文件的文件（blob）引用、父引用、日志消息和提交时间。</p>
+</li>
+<li><p>commit后暂存区内容被清空</p>
+</li>
+<li><p>commit命令从不添加、更改或删除工作目录中的文件（除了&nbsp;<code>.gitlet</code>&nbsp;目录中的那些）</p>
+</li>
+<li><p>被跟踪的文件从工作目录中丢失或在工作目录中被更改&nbsp;<em>不</em>&nbsp;算是失败。只需完全忽略&nbsp;<code>.gitlet</code>&nbsp;目录之外的所有内容。</p>
+</li>
+</ol>
+<h1 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h1><blockquote>
+<p>删除暂存区或硬盘中(工作目录)的文件，但是无法删除commit里的记录</p>
+</blockquote>
+<ol>
+<li><p>如果文件既未暂存也未被 head 提交跟踪，打印错误消息&nbsp;<code>No reason to remove the file.</code></p>
+</li>
+<li><p>如果当前文件在暂存区，则将他从暂存区移除</p>
+</li>
+<li><p>如果文件已被commit跟踪，则将他的放入“待删除暂存区”，并将目录文件删除</p>
+</li>
+<li><p>已被commit跟踪，但是文件已经不存在于文件目录</p>
+</li>
+</ol>
+<h1 id="log"><a href="#log" class="headerlink" title="log"></a>log</h1><blockquote>
+<p>从当前 head 提交开始，沿着提交树向后显示每个提交的信息</p>
+</blockquote>
+<ul>
+<li><p><code>HEAD</code> → 找到当前分支文件</p>
+</li>
+<li><p>分支文件 → 得到 head commitId</p>
+</li>
+<li><p>去 <code>objects/&lt;commitId&gt;</code> 读出 commit</p>
+</li>
+<li><p>打印它，然后用 <code>commit.parent</code> 更新 commitId</p>
+</li>
+<li><p>重复直到 parent = null</p>
+</li>
+<li><p>所以 <code>log</code> 本质是：<strong>从一个入口 commit 出发，沿 parent 链遍历并打印</strong></p>
+</li>
+</ul>
+<h1 id="global-log"><a href="#global-log" class="headerlink" title="global-log"></a>global-log</h1><blockquote>
+<p>类似于 log，除了显示所有曾经进行的提交的信息。提交的顺序无关紧要。</p>
+<p><strong>把对象库里所有 commit 都打印一遍</strong>（顺序无所谓）</p>
+</blockquote>
+<ul>
+<li><p>扫描 <code>objects/</code> 下所有文件名（id）</p>
+</li>
+<li><p>过滤出“哪些是 commit”（因为里面还有 blob）</p>
+</li>
+<li><p>对每个 commit 打印同样的格式</p>
+</li>
+<li><p><strong>扫数据库</strong>（也就是我们的objects）</p>
+</li>
+</ul>
+<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><blockquote>
+<p>打印出所有具有给定提交消息的提交 id，每行一个。如果有多个这样的提交，它会将 id 打印在单独的行上。</p>
+</blockquote>
+<p><code>find</code> 和 <code>global-log</code> 的结构几乎一模一样：</p>
+<ul>
+<li><p>都是扫 <code>objects</code></p>
+</li>
+<li><p>都要过滤 commit</p>
+</li>
+<li><p>差别只是：</p>
+<ul>
+<li><p><code>global-log</code>：全部打印</p>
+</li>
+<li><p><code>find</code>：只打印 message 完全匹配的 commitId；没有则报错</p>
+</li>
+</ul>
+</li>
+<li><p><strong>数据库查询</strong>（WHERE message = ?）</p>
+</li>
+</ul>
+<h1 id="status"><a href="#status" class="headerlink" title="status"></a>status</h1><blockquote>
+<p>显示当前存在哪些分支，并用&nbsp;<code>*</code>&nbsp;标记当前分支。还显示哪些文件已暂存以进行添加或移除。</p>
+<p>它几乎不关心历史链长啥样，它关心的是<strong>现在工作区和暂存区的状态</strong></p>
+</blockquote>
+<ul>
+<li><p><code>refs/heads</code> + <code>HEAD</code>：列分支、标当前分支</p>
+</li>
+<li><p><code>index</code>：列 staged 和 removed</p>
+</li>
+<li><p><strong>工作区 CWD</strong> + <strong>HEAD commit 的快照（commit.map）</strong> + <strong>index</strong>：对比出</p>
+<ul>
+<li><p>未暂存的修改（modified not staged）</p>
+</li>
+<li><p>未跟踪文件（untracked）</p>
+</li>
+</ul>
+</li>
+<li><p><strong>工作台对比</strong>（CWD vs HEAD vs INDEX）</p>
+</li>
+</ul>
+<h1 id="checkout"><a href="#checkout" class="headerlink" title="checkout"></a>checkout</h1><blockquote>
+<p>Checkout 是一种通用命令，根据其参数的不同可以做几件不同的事情。</p>
+</blockquote>
+<h3 id="checkout-的三种用法："><a href="#checkout-的三种用法：" class="headerlink" title="checkout 的三种用法："></a>checkout 的三种用法：</h3><ul>
+<li><p><code>checkout -- file</code>：commit 来源 = 当前 HEAD commit</p>
+</li>
+<li><p><code>checkout commitId -- file</code>：commit 来源 = 指定的 commit</p>
+</li>
+<li><p><code>checkout branch</code>：commit 来源 = 目标分支的 head commit（并且还要移动 HEAD 指向新分支）</p>
+</li>
+</ul>
+<h1 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h1><blockquote>
+<p>创建一个具有给定名称的新分支，并将其指向当前 head 提交。</p>
+</blockquote>
+<ul>
+<li><p>不会产生新 commit</p>
+</li>
+<li><p>不会改工作目录文件</p>
+</li>
+<li><p>只是多了一个名字 → commitId 的映射</p>
+</li>
+<li><p>如果同名分支已经存在：打印 <code>A branch with that name already exists.</code></p>
+</li>
+</ul>
+<h1 id="rm-branch"><a href="#rm-branch" class="headerlink" title="rm-branch"></a>rm-branch</h1><blockquote>
+<p>删除具有给定名称的分支。这仅仅意味着删除与分支关联的指针；这并不意味着删除在该分支下创建的所有提交，或类似的东西。</p>
+</blockquote>
+<ul>
+<li><p>分支不存在：<code>A branch with that name does not exist.</code></p>
+</li>
+<li><p>试图删除当前分支：<code>Cannot remove the current branch.</code></p>
+</li>
+<li><p><strong>commit 节点是不可变的</strong>，你只能加新节点，不能改旧节点；删分支只是“忘记一个入口”，不等于抹掉历史本体。</p>
+</li>
+</ul>
+<h1 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h1><blockquote>
+<p>检出由给定提交跟踪的所有文件。删除该提交中不存在的被跟踪文件。还将当前分支的 head 移动到该提交节点。</p>
+<p>任何会覆盖/删除工作区文件的命令（checkout 分支 / reset / merge）都必须先做 untracked 覆盖检查。</p>
+</blockquote>
+<ul>
+<li><p><strong>把给定 commit 所跟踪的所有文件</strong>检出到工作目录</p>
+</li>
+<li><p><strong>删除</strong>当前被跟踪但在目标 commit 快照里不存在的文件（即“目标快照没有的跟踪文件要移除”）</p>
+</li>
+<li><p><strong>把当前分支的 head 指针移动到那个 commit 节点</strong></p>
+</li>
+<li><p><strong>清空暂存区</strong> 并且它几乎就是“对任意 commit 做一次 checkout，同时还改变当前分支头”。</p>
+</li>
+<li><p>commit id 可以像 checkout 一样用<strong>缩写前缀</strong>。</p>
+</li>
+<li><p>如果 commit 不存在：<code>No commit with that id exists.</code></p>
+</li>
+<li><p>如果当前分支里有某个工作文件是 untracked，并且 reset 会覆盖它：打印 <code>There is an untracked file in the way; delete it, or add and commit it first.</code> 而且要求 <strong>在做任何事之前就检查并退出</strong>。</p>
+</li>
+</ul>
+<h1 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h1><blockquote>
+<p>将给定分支的文件合并到当前分支中。</p>
+<p>把两条历史线“重新接线”，生成一个双亲提交（而且可能冲突）</p>
+</blockquote>
+<ul>
+<li><p><strong>given 改了、current 没改</strong>：用 given 版本覆盖，并且自动 stage。</p>
+</li>
+<li><p><strong>current 改了、given 没改</strong>：保持 current 不动。</p>
+</li>
+<li><p><strong>两边都没改</strong>：保持不动。</p>
+</li>
+<li><p><strong>某文件只存在于 current（不在 split，也不在 given）</strong>：保持不动。</p>
+</li>
+<li><p><strong>某文件只存在于 given（不在 split，也不在 current）</strong>：检出 given 并 stage。</p>
+</li>
+<li><p><strong>split 有、current 没改、given 删除了</strong>：删掉（并变成 untracked/移除），相当于“接受 given 的删除”。</p>
+</li>
+<li><p><strong>split 有、given 没改、current 删除了</strong>：保持 absent。</p>
+</li>
+<li><p><strong>两边“改动方式不同”</strong>：冲突（包括内容不同、或一边改一边删、或 split 不存在但两边新建且内容不同）。</p>
+<p>merge 的失败条件很多，而且顺序很要命（因为很多检查要求“在做任何事之前”就退出）：</p>
+<ul>
+<li><p>暂存区里有 staged additions 或 removals：<code>You have uncommitted changes.</code></p>
+</li>
+<li><p>given 分支不存在：<code>A branch with that name does not exist.</code></p>
+</li>
+<li><p>merge 自己：<code>Cannot merge a branch with itself.</code></p>
+</li>
+<li><p>如果当前 commit 中存在 untracked 文件，并且 merge 会覆盖或删除它： <code>There is an untracked file in the way; delete it, or add and commit it first.</code> 并且要求 <strong>在做任何事之前就检查</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="总结（碎碎念）"><a href="#总结（碎碎念）" class="headerlink" title="总结（碎碎念）"></a>总结（碎碎念）</h1><p>最开始想贴代码的，然后发现一贴一大串挺丑的，每行代码都进行对应的解释效果可能会好点，适合自己回顾也能达到给没写过gitlet的人讲解的目的，但是马上期末周了，我学校的东西一点没学，我得赶一赶学校的考试（唉，每次都是这样……</p>
+<p>关于项目本身，gitlet是我迄今为止遇到过最难的一个项目，也是我中途放弃了很多次的一个项目（<del>无数次的直面恐惧，无数次的被击碎，爽</del>）</p>
+<p>同时也是一个让我燃起了些许自信的项目</p>
+<p>之后我想写一篇年终总结（也可以说是下半年的总结），记录一下我下半年都做了什么（拷打一下自己）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -206,7 +510,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-12-09 21:43:33" itemprop="dateModified" datetime="2025-12-09T21:43:33+08:00">2025-12-09</time>
+      <time title="修改时间：2025-12-22 22:29:05" itemprop="dateModified" datetime="2025-12-22T22:29:05+08:00">2025-12-22</time>
     </span>
 
   
@@ -219,7 +523,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><h1 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h1><h1 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h1><h1 id="左倾红黑树"><a href="#左倾红黑树" class="headerlink" title="左倾红黑树"></a>左倾红黑树</h1><h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><h1 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h1><h1 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h1><h1 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h1><h1 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h1><h1 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h1><h1 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h1><hr>
+          <h1 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h1><h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><h1 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h1><h1 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h1><h1 id="左倾红黑树"><a href="#左倾红黑树" class="headerlink" title="左倾红黑树"></a>左倾红黑树</h1><h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><h1 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h1><h1 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h1><h1 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h1><h1 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h1><h1 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h1><h1 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h1><h1 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h1><h1 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h1><h1 id="有向无环图"><a href="#有向无环图" class="headerlink" title="有向无环图"></a>有向无环图</h1><h1 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h1><h1 id="三大排序"><a href="#三大排序" class="headerlink" title="三大排序"></a>三大排序</h1><h1 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h1><h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><h1 id="规约"><a href="#规约" class="headerlink" title="规约"></a>规约</h1><h1 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h1><h1 id="P-VS-NP"><a href="#P-VS-NP" class="headerlink" title="P VS NP"></a>P VS NP</h1><hr>
 <h1 id="近日总结"><a href="#近日总结" class="headerlink" title="近日总结"></a>近日总结</h1>
       
     </div>
@@ -1465,137 +1769,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://tsushimakei.github.io/2025/11/01/CS61B-Day01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="TsushimaKei">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="对马馨的Blog">
-      <meta itemprop="description" content="不要比较">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 对马馨的Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/11/01/CS61B-Day01/" class="post-title-link" itemprop="url">CS61B--Day01</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-11-01 18:59:58 / 修改时间：19:31:31" itemprop="dateCreated datePublished" datetime="2025-11-01T18:59:58+08:00">2025-11-01</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>java是一个静态类型的语言，不具备有损的隐式转换的功能，定义为int类型时无法赋予5.3这样的值（c语言中则是可以赋值但是会导致精度丢失，也就是“隐式转换”）</p>
-<table>
-<thead>
-<tr>
-<th><strong>特性</strong></th>
-<th><strong>C 语言</strong></th>
-<th><strong>Java 语言</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong><code>int i = 3.14;</code></strong></td>
-<td><strong>允许</strong>（编译通过）</td>
-<td><strong>不允许</strong>（编译错误）</td>
-</tr>
-<tr>
-<td><strong>转换方式</strong></td>
-<td><strong>隐式转换</strong>（Implicit）</td>
-<td><strong>必须显式转换</strong>（Explicit Cast）</td>
-</tr>
-<tr>
-<td><strong>结果</strong></td>
-<td>自动<strong>截断</strong>小数，<code>i</code> 变为 <code>3</code></td>
-<td>必须写成 <code>int i = (int)3.14;</code>，<code>i</code> 才会变为 <code>3</code></td>
-</tr>
-<tr>
-<td><strong>设计哲学</strong></td>
-<td>灵活，相信程序员</td>
-<td>严格，强调类型安全，防止意外的数据丢失</td>
-</tr>
-</tbody></table>
-<hr>
-<ul>
-<li><p>java一般一个(.java)文件只包含一个类，所有代码都包含在类中，同一个文件夹下可以进行相互调用</p>
-</li>
-<li><p>java想要运行一个类需要一个主方法（main）</p>
-</li>
-</ul>
-<hr>
-<p>以下这种是无法运行的</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个类只是一个“工具类”或“数据模型”</span></span><br><span class="line"><span class="comment">// 它没有 main 方法，所以它自己不能被运行</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">makeNoise</span><span class="params">()</span> {</span><br><span class="line">        System.out.println(<span class="string">"Bark"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>所以得这样</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DogLauncher</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line"> <span class="comment">// 您的代码从这里开始运行</span></span><br><span class="line">        Dog.makeNoise();</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<blockquote>
-<p>一个使用另一个类的类有时被称为该类的“客户端”，即 <code>DogLauncher</code> 是 <code>Dog</code> 的客户端。</p>
-</blockquote>
-<ul>
-<li><p>不能从静态(static)内容访问实例属性</p>
-</li>
-<li><p>与c语言不同，c语言中所有东西都有一个值，java中可能存在一种没有值的东西，不是null，就是什么都没有</p>
-</li>
-</ul>
-<hr>
-<p><strong>方法重载</strong></p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span>{</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> weightInPounds;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">()</span>{</span><br><span class="line">        weightInPounds = <span class="number">95</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Dog</span><span class="params">(<span class="type">int</span> w)</span>{</span><br><span class="line">        weightInPounds = w;   </span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p><strong>为什么存在两个<code>public Dog</code>?</strong></p>
-<blockquote>
-<p>因为这两个构造方法的参数列表不同（一个是 0 个参数，一个是 1 个 int 参数），所以 Java 编译器可以毫不费力地将它们区分开。</p>
-</blockquote>
-<hr>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
 </div>
   </main>
@@ -1605,7 +1781,7 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2025</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
